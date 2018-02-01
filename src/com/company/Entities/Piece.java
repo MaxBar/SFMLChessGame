@@ -1,31 +1,29 @@
 package com.company.Entities;
 
+import org.jsfml.graphics.IntRect;
+
 import java.util.ArrayList;
 
-public class Piece {
+public abstract class Piece {
 
-    public int x;
-    public int y;
-    public boolean isWhite;
+    private int x;
+    private int y;
+    private int startPosX;
+    private int startPosY;
+    private int endPosX;
+    private int endPosY;
+    private boolean isWhite;
 
+    public IntRect getIntRect() {
 
-    public ArrayList<Piece> whitePieces; // List for white pieces
-    public ArrayList<Piece> blackPieces; // List for black pieces
+        if (isWhite) {
 
-    public Piece getPiece(int x, int y) {
+            startPosY = 60;
 
-        for (Piece p : whitePieces) {
-            if (p.getX() == x && p.getY() == y) {
-                return p;
-            }
         }
-        for (Piece p : blackPieces) {
-            if (p.getX() == x && p.getY() == y) {
-                return p;
-            }
-        }
+        IntRect rect = new IntRect(startPosX, startPosY, endPosX, endPosY);
+        return rect;
 
-        return null;
     }
 
     public Piece() {
@@ -37,15 +35,15 @@ public class Piece {
         this.isWhite = isWhite;
         this.x = x;
         this.y = y;
+        startPosX = 0;
+        startPosY = 0;
+        endPosX = 60;
+        endPosY = 60;
 
     }
 
     public boolean isWhite() {
         return isWhite;
-    }
-
-    public boolean isBlack() {
-        return !isWhite;
     }
 
     public void setX(int x) {
@@ -56,6 +54,10 @@ public class Piece {
         this.y = y;
     }
 
+    public void setStartPosX(int startPosX) {
+        this.startPosX = startPosX;
+    }
+
     public int getX() {
         return x;
     }
@@ -64,7 +66,11 @@ public class Piece {
         return y;
     }
 
-    public boolean canMove(int destination_x, int destination_y) {
-        return false;
+
+    public PieceTypes type() {
+
+        return type();
+
     }
+
 }
