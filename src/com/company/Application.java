@@ -14,7 +14,7 @@ public class Application {
         //window.create(new VideoMode(640, 480), "The Ultimate Chess Game!");
         RenderWindow window = new RenderWindow();
     
-        window.create(new VideoMode(640, 480), "The Ultimate Chess Game!");
+        window.create(new VideoMode(1600, 1024), "The Ultimate Chess Game!");
     
         window.setFramerateLimit(30);
         GameEngine game = new GameEngine();

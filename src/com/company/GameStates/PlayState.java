@@ -1,19 +1,26 @@
 package com.company.GameStates;
 
+import com.company.ChessBoard;
 import com.company.Engine.GameEngine;
 import com.company.Engine.GameState;
 import com.company.Entities.AI;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
+import org.jsfml.system.Vector2f;
 import org.jsfml.window.event.Event;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PlayState extends GameState {
     private static PlayState playState = null;
     private AI[] ai;
+    private ChessBoard chessBoard;
+    private Sprite[][] boardSprite;
     /*private int[][] chessBoard;
     private TextGraphics textGraphics;
     private KeyStroke key;
@@ -37,8 +44,24 @@ public class PlayState extends GameState {
     
     @Override
     public void init(RenderWindow window) throws IOException {
-        window.clear(Color.BLACK);
+        window.clear();
         System.out.println("Inside PlayState");
+        chessBoard = new ChessBoard();
+        boardSprite = chessBoard.createBoard();
+        
+        for(int i = 0; i < boardSprite.length; ++i) {
+            for(int j = 0; j < boardSprite.length; ++j) {
+                boardSprite[i][j].setPosition(new Vector2f(i * 128, j * 128));
+                System.out.println("x: " + i * 128);
+                System.out.println("y: " + j * 128);
+                
+                if(i % 8 == 0) {
+                    boardSprite[i][j].setPosition(new Vector2f(i * 128, j * 128));
+                    System.out.println("x: " + i * 128);
+                    System.out.println("y: " + j * 128);
+                }
+            }
+        }
         /*Board.getTerminal().clearScreen();
         ai = new AI[2];
         chessBoard = new int[8][8];
@@ -118,7 +141,7 @@ public class PlayState extends GameState {
     
     @Override
     public void update(GameEngine game, RenderWindow window) throws IOException {
-        window.clear(Color.GREEN);
+        window.clear(Color.BLACK);
         /*for(int i = 0; i < ai.length; ++i) {
             ai[i].update();
         }*/
@@ -126,6 +149,11 @@ public class PlayState extends GameState {
     
     @Override
     public void draw(GameEngine game, RenderWindow window) throws IOException {
+        for(int i = 0; i < boardSprite.length; ++i) {
+            for(int j = 0; j < boardSprite[i].length; ++j) {
+                window.draw(boardSprite[i][j]);
+            }
+        }
         window.display();
         //Board.getTerminal().flush();
         //Board.getScreen().refresh();
