@@ -7,16 +7,19 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
 
 import java.io.IOException;
+import java.sql.Time;
 
 public class Application {
     public void run() throws IOException {
-        //RenderWindow window = new RenderWindow();
-        //window.create(new VideoMode(640, 480), "The Ultimate Chess Game!");
+        
+        //DeltaTime testing
+        long lastTime = System.nanoTime();
+        
         RenderWindow window = new RenderWindow();
     
         window.create(new VideoMode(1600, 1024), "The Ultimate Chess Game!");
     
-        window.setFramerateLimit(30);
+        window.setFramerateLimit(120);
         GameEngine game = new GameEngine();
         
         game.init();
@@ -25,13 +28,16 @@ public class Application {
     
         while(window.isOpen()) {
             while (game.running()) {
-    
-                game.handleEvents(window);
-                game.update(window);
+                long time = System.nanoTime();
+                float deltaTime = (time - lastTime) / 1000000;
+                
+                game.handleEvents(window, deltaTime);
+                game.update(window, deltaTime);
                 game.draw(window);
+    
+                lastTime = time;
             }
         }
         System.out.println(game.running());
-        //Board.getTerminal().exitPrivateMode();
     }
 }

@@ -27,6 +27,10 @@ public class PlayState extends GameState {
     String chessFilePath;
     private Piece[][] allpieces;
     
+    float movementSpeed;
+    boolean pressedButton;
+    float newPosY;
+    
     private PlayState() throws IOException {
     
     }
@@ -41,6 +45,10 @@ public class PlayState extends GameState {
     @Override
     public void init(RenderWindow window) throws IOException {
         window.clear();
+        
+        movementSpeed = 0.2f;
+        pressedButton = false;
+        newPosY = 19 + 128;
         
         System.out.println("Inside PlayState");
         chessBoard = new ChessBoard();
@@ -78,18 +86,39 @@ public class PlayState extends GameState {
     }
     
     @Override
-    public void handleEvents(GameEngine game, RenderWindow window) throws IOException {
+    public void handleEvents(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         for(Event event : window.pollEvents()) {
-            if(event.type == Event.Type.CLOSED) {
-                window.close();
-                game.quit();
+            switch(event.type) {
+                case CLOSED:
+                    window.close();
+                    game.quit();
+                    break;
+                case KEY_RELEASED:
+                    switch (event.asKeyEvent().key) {
+                        case SPACE:
+                            pressedButton = true;
+                            newPosY += 128;
+                            System.out.println(newPosY);
+                            break;
+                    }
+                case MOUSE_ENTERED:
+                    break;
             }
         }
     }
     
     @Override
-    public void update(GameEngine game, RenderWindow window) throws IOException {
+    public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         window.clear(Color.BLACK);
+        System.out.println(pieceSprite[1][0].getPosition().y);
+        if(pressedButton) {
+            if (pieceSprite[1][0].getPosition().y <= newPosY) {
+                pieceSprite[1][0].move(0, movementSpeed * deltaTime);
+            } else if (pieceSprite[1][0].getPosition().y >= (19 + 128 * 8)) {
+                pieceSprite[1][0].setPosition(pieceSprite[1][0].getPosition().x, 1024);
+                pressedButton = false;
+            }
+        }
     }
     
     @Override
@@ -101,9 +130,6 @@ public class PlayState extends GameState {
                 window.draw(boardSpriteJ);
             }
         }
-        
-        window.draw(pieceSprite[0][0]);
-        window.draw(pieceSprite[0][1]);
     
         for (Sprite[] PieceSpriteI : pieceSprite) {
             for (Sprite PieceSpriteJ : PieceSpriteI) {

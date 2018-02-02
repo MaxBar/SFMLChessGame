@@ -51,7 +51,7 @@ public class MenuState extends GameState {
     }
     
     @Override
-    public void handleEvents(GameEngine game, RenderWindow window) throws IOException {
+    public void handleEvents(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         for(Event event : window.pollEvents()) {
             switch(event.type) {
                 case CLOSED:
@@ -72,7 +72,7 @@ public class MenuState extends GameState {
     }
     
     @Override
-    public void update(GameEngine game, RenderWindow window) throws IOException {
+    public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         window.clear(Color.BLUE);
     }
     

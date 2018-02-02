@@ -29,12 +29,12 @@ public class InitState extends GameState {
     }
     
     @Override
-    public void handleEvents(GameEngine game, RenderWindow window) throws IOException {
+    public void handleEvents(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
     
     }
     
     @Override
-    public void update(GameEngine game, RenderWindow window) throws IOException {
+    public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         changeState(game, MenuState.getInstance(), window);
     }
     

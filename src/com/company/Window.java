@@ -1,4 +1,4 @@
-package com.company;
+/*package com.company;
 
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.VideoMode;
@@ -14,4 +14,4 @@ public class Window {
     public RenderWindow getWindow() {
         return window;
     }
-}
+}*/

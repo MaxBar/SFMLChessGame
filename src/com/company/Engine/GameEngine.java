@@ -42,13 +42,13 @@ public class GameEngine {
     }
     
     // Kallar på nuvarande states handleEvents
-    public void handleEvents(RenderWindow window) throws IOException {
-        states.get(states.size() - 1).handleEvents(this, window);
+    public void handleEvents(RenderWindow window, float deltaTime) throws IOException {
+        states.get(states.size() - 1).handleEvents(this, window, deltaTime);
     }
     
     // Kallar på nuvarande states update
-    public void update(RenderWindow window) throws IOException {
-        states.get(states.size() - 1).update(this, window);
+    public void update(RenderWindow window, float deltaTime) throws IOException {
+        states.get(states.size() - 1).update(this, window, deltaTime);
     }
     
     // Kallar på nuvarande states draw
