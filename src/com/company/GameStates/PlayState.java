@@ -6,9 +6,7 @@ import com.company.Engine.GameState;
 import com.company.Entities.AI;
 import com.company.Entities.Piece;
 import com.company.Managers.TextureManager;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.event.Event;
 
@@ -44,9 +42,6 @@ public class PlayState extends GameState {
     public void init(RenderWindow window) throws IOException {
         window.clear();
         
-        
-        
-        
         System.out.println("Inside PlayState");
         chessBoard = new ChessBoard();
         boardSprite = chessBoard.createBoard();
@@ -65,20 +60,19 @@ public class PlayState extends GameState {
         textureManager = new TextureManager();
         chessFilePath = "src/com/company/Images/ChessPiecesArray.png";
         allpieces = chessBoard.getAllPieces();
-    
-        pieceSprite = new Sprite[8][8];//chessBoard.populateChessboardList();
-        //pieceSprite = chessBoard.
+        
+        
+        pieceSprite = new Sprite[8][8];
+        
         for(int i = 0; i < allpieces.length; ++i ) {
             for(int j = 0; j < allpieces.length; ++j) {
                 pieceSprite[i][j] = new Sprite();
                 
                 if(chessBoard.getAllPieces()[i][j] != null) {
                     pieceSprite[i][j] = allpieces[i][j].getSprite(textureManager, chessFilePath);
-                    pieceSprite[i][j].setPosition(new Vector2f(i * 60 + 64 * i + 64, j * 60 + 64 * j + 64));
+                    pieceSprite[i][j].setPosition(new Vector2f(j * 128 + 19, i * 128 + 19));
+                    pieceSprite[i][j].setScale(new Vector2f(1.5f, 1.5f));
                 }
-                
-                //System.out.println("x: " + pieceSprite[i][j].getPosition().x);
-                //System.out.println("y: " + pieceSprite[i][j].getPosition().y);
             }
         }
     }
@@ -100,19 +94,29 @@ public class PlayState extends GameState {
     
     @Override
     public void draw(GameEngine game, RenderWindow window) throws IOException {
+        
+        
         for (Sprite[] boardSpriteI : boardSprite) {
             for (Sprite boardSpriteJ : boardSpriteI) {
                 window.draw(boardSpriteJ);
             }
         }
+        
+        window.draw(pieceSprite[0][0]);
+        window.draw(pieceSprite[0][1]);
+        
+        /*for(int i = 0; i < pieceSprite.length; ++i) {
+            for(int j = 0; j < pieceSprite[i].length; ++j) {
+                if(pieceSprite[i][j].getTexture() == null)
+                window.draw(pieceSprite[i][j]);
+            }
+        }*/
     
         for (Sprite[] PieceSpriteI : pieceSprite) {
             for (Sprite PieceSpriteJ : PieceSpriteI) {
                 if(PieceSpriteJ != null) {
                     window.draw(PieceSpriteJ);
                 }
-                System.out.println("x: " + PieceSpriteJ.getPosition().x);
-                System.out.println("x: " + PieceSpriteJ.getPosition().y);
             }
         }
         window.display();

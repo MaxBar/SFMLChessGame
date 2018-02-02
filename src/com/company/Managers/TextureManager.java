@@ -8,12 +8,12 @@ import java.nio.file.Paths;
 public class TextureManager {
     private Texture texture;
     private Image image;
-    private Sprite sprite;
+    //private Sprite sprite;
     
     public TextureManager() {
         texture = new Texture();
         image = new Image();
-        sprite = new Sprite();
+        //sprite = new Sprite();
     }
     
     private void loadImage(String filePath) {
@@ -33,12 +33,14 @@ public class TextureManager {
         }
     }
     
-    private void setTexture(String filePath) {
+    public Texture getTexture(String filePath) {
         loadTexture(filePath);
-        sprite.setTexture(texture);
+        texture.setSmooth(true);
+        //sprite.setTexture(texture);
+        return texture;
     }
     
-    private void spliceTexture(IntRect intRect, String filePath) {
+    /*private void spliceTexture(IntRect intRect, String filePath) {
         setTexture(filePath);
         sprite.setTextureRect(intRect);
     }
@@ -46,5 +48,5 @@ public class TextureManager {
     public Sprite getSprite(IntRect intRect, String filePath) {
         spliceTexture(intRect, filePath);
         return sprite;
-    }
+    }*/
 }
