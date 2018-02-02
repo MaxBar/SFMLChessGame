@@ -104,13 +104,6 @@ public class PlayState extends GameState {
         
         window.draw(pieceSprite[0][0]);
         window.draw(pieceSprite[0][1]);
-        
-        /*for(int i = 0; i < pieceSprite.length; ++i) {
-            for(int j = 0; j < pieceSprite[i].length; ++j) {
-                if(pieceSprite[i][j].getTexture() == null)
-                window.draw(pieceSprite[i][j]);
-            }
-        }*/
     
         for (Sprite[] PieceSpriteI : pieceSprite) {
             for (Sprite PieceSpriteJ : PieceSpriteI) {

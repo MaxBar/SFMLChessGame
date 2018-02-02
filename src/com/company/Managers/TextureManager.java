@@ -39,14 +39,4 @@ public class TextureManager {
         //sprite.setTexture(texture);
         return texture;
     }
-    
-    /*private void spliceTexture(IntRect intRect, String filePath) {
-        setTexture(filePath);
-        sprite.setTextureRect(intRect);
-    }
-    
-    public Sprite getSprite(IntRect intRect, String filePath) {
-        spliceTexture(intRect, filePath);
-        return sprite;
-    }*/
 }

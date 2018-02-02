@@ -1,4 +1,4 @@
-package com.company.Entities;
+package com.company.Enums;
 
 public enum PieceTypes {
 

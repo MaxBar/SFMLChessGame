@@ -1,10 +1,9 @@
 package com.company.Entities;
 
+import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
-
-import java.util.ArrayList;
 
 public abstract class Piece {
 
