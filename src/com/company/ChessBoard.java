@@ -1,9 +1,15 @@
 package com.company;
 
+import com.company.Entities.*;
 import org.jsfml.graphics.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class ChessBoard {
     Texture[][] texture;
@@ -12,11 +18,26 @@ public class ChessBoard {
     Image[] image;
     String[] fileName;
     
+    Image pieceImage;
+    Texture pieceTexture;
+    
+    private List<Piece> blackPieces;
+    private List<Piece> whitePieces;
+    private int numberOfPieces;
+    private int numberOfPawns;
+    
+    private Piece[][] allPieces;
+    private int columns;
+    private int rows;
+    private int reverseRows;
+    
     public ChessBoard() {
         texture = new Texture[8][8];
         boardTexture = new Texture[2];
         sprite = new Sprite[2];
         image = new Image[2];
+        pieceImage = new Image();
+        pieceTexture = new Texture();
         
         fileName = new String[2];
         fileName[0] = "BlackBackground.png";
@@ -35,6 +56,16 @@ public class ChessBoard {
                 ex.printStackTrace();
             }
         }
+        
+        blackPieces = new ArrayList<>();
+        whitePieces = new ArrayList<>();
+        numberOfPieces = 16;
+        numberOfPawns = 8;
+        
+        allPieces = new Piece[8][8];
+        columns = 8;
+        rows = 2;
+        reverseRows = 5;
     }
     
     public Sprite[][] createBoard() {
@@ -64,5 +95,61 @@ public class ChessBoard {
             }
         }
         return spriteArray;
+    }
+    
+    public void fillLists(boolean isWhite) {
+        int count = 0;
+        List<Piece> internalList = new ArrayList<>();
+        
+        internalList.add(new Rook(0, 0, isWhite));
+        internalList.add(new Knight(0, 1, isWhite));
+        internalList.add(new Bishop(0, 2, isWhite));
+        internalList.add(new Queen(0, 3, isWhite));
+        internalList.add(new King(0, 4, isWhite));
+        internalList.add(new Bishop(0, 5, isWhite));
+        internalList.add(new Knight(0, 6, isWhite));
+        internalList.add(new Rook(0, 7, isWhite));
+            for (int i = 0; i < numberOfPieces; ++i) {
+                if (count < numberOfPawns) {
+                    internalList.add(new Pawn(1, i, isWhite));
+                }
+                ++count;
+            }
+            
+        if(isWhite) {
+                whitePieces = internalList;
+        } else {
+                blackPieces = internalList;
+        }
+    }
+    
+    public void populateChessboardList() {
+        for(int i = 0; i < rows; ++i) {
+            for(int j = 0; j < columns; ++j) {
+                if(i == 0) {
+                    allPieces[i][j] = blackPieces.get(i + j);
+                } else {
+                    allPieces[i][j] = blackPieces.get(i + j + 7);
+                }
+            }
+        }
+        
+        for(int i = 0; i < rows; ++i) {
+            for(int j = 0; j < columns; ++j) {
+                if(i == 0) {
+                    allPieces[allPieces[i].length - 1 -i][j] = whitePieces.get(i + j);
+                } else {
+                    allPieces[allPieces[i].length - 1 -i][j] = whitePieces.get(i + j + 7);
+                }
+            }
+        }
+    }
+    
+    public List<Piece> getBlackPieces() {
+        return blackPieces;
+    }
+    
+    public List<Piece> getWhitePieces() {
+        return whitePieces;
     }
 }

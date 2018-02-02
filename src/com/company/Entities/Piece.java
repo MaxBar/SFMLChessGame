@@ -67,10 +67,6 @@ public abstract class Piece {
     }
 
 
-    public PieceTypes type() {
-
-        return type();
-
-    }
+    public abstract PieceTypes type();
 
 }
