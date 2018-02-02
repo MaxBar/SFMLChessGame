@@ -29,6 +29,11 @@ public class Bishop extends Piece implements IEntity {
     }
     
     @Override
+    public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
+    
+    }
+    
+    @Override
     public void move() {
     
     }

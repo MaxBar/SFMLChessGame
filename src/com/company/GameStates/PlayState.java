@@ -4,6 +4,7 @@ import com.company.ChessBoard;
 import com.company.Engine.GameEngine;
 import com.company.Engine.GameState;
 import com.company.Entities.AI;
+import com.company.Entities.Pawn;
 import com.company.Entities.Piece;
 import com.company.Managers.TextureManager;
 import org.jsfml.graphics.*;
@@ -96,9 +97,11 @@ public class PlayState extends GameState {
                 case KEY_RELEASED:
                     switch (event.asKeyEvent().key) {
                         case SPACE:
-                            pressedButton = true;
-                            newPosY += 128;
-                            System.out.println(newPosY);
+                            allpieces[0][1].checkMovement(allpieces, 0, 1);
+                            System.out.println(allpieces[0][1]);
+                            //pressedButton = true;
+                            //newPosY += 128;
+                            //System.out.println(newPosY);
                             break;
                     }
                 case MOUSE_ENTERED:
@@ -110,10 +113,13 @@ public class PlayState extends GameState {
     @Override
     public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         window.clear(Color.BLACK);
-        System.out.println(pieceSprite[1][0].getPosition().y);
+        //System.out.println(pieceSprite[1][0].getPosition().y);
         if(pressedButton) {
             if (pieceSprite[1][0].getPosition().y <= newPosY) {
                 pieceSprite[1][0].move(0, movementSpeed * deltaTime);
+                if(pieceSprite[1][0].getPosition().y >= newPosY) {
+                    pieceSprite[1][0].setPosition(pieceSprite[1][0].getPosition().x, newPosY);
+                }
             } else if (pieceSprite[1][0].getPosition().y >= (19 + 128 * 8)) {
                 pieceSprite[1][0].setPosition(pieceSprite[1][0].getPosition().x, 1024);
                 pressedButton = false;

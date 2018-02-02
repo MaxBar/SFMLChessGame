@@ -30,12 +30,12 @@ public class Application {
             while (game.running()) {
                 long time = System.nanoTime();
                 float deltaTime = (time - lastTime) / 1000000;
+                lastTime = time;
                 
                 game.handleEvents(window, deltaTime);
                 game.update(window, deltaTime);
                 game.draw(window);
     
-                lastTime = time;
             }
         }
         System.out.println(game.running());

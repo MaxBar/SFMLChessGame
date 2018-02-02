@@ -70,4 +70,6 @@ public abstract class Piece {
     public abstract PieceTypes type();
     
     public abstract Sprite getSprite(TextureManager textureManager, String filePath);
+    
+    public abstract void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn);
 }
