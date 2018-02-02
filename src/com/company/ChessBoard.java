@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Entities.*;
+import com.company.Managers.TextureManager;
 import org.jsfml.graphics.*;
 
 import java.io.IOException;
@@ -151,5 +152,13 @@ public class ChessBoard {
     
     public List<Piece> getWhitePieces() {
         return whitePieces;
+    }
+    
+    /*private Sprite determinePiece(TextureManager textureManager, String filePath) {
+    
+    }*/
+    
+    public Piece[][] getAllPieces() {
+        return allPieces;
     }
 }

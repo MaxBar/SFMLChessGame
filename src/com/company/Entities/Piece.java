@@ -1,6 +1,8 @@
 package com.company.Entities;
 
+import com.company.Managers.TextureManager;
 import org.jsfml.graphics.IntRect;
+import org.jsfml.graphics.Sprite;
 
 import java.util.ArrayList;
 
@@ -8,7 +10,7 @@ public abstract class Piece {
 
     private int x;
     private int y;
-    private int startPosX;
+    int startPosX;
     private int startPosY;
     private int endPosX;
     private int endPosY;
@@ -21,8 +23,7 @@ public abstract class Piece {
             startPosY = 60;
 
         }
-        IntRect rect = new IntRect(startPosX, startPosY, endPosX, endPosY);
-        return rect;
+        return new IntRect(startPosX, startPosY, endPosX, endPosY);
 
     }
 
@@ -35,7 +36,7 @@ public abstract class Piece {
         this.isWhite = isWhite;
         this.x = x;
         this.y = y;
-        startPosX = 0;
+        //startPosX;
         startPosY = 0;
         endPosX = 60;
         endPosY = 60;
@@ -68,5 +69,6 @@ public abstract class Piece {
 
 
     public abstract PieceTypes type();
-
+    
+    public abstract Sprite getSprite(TextureManager textureManager, String filePath);
 }
