@@ -2,6 +2,7 @@ package com.company.Entities;
 
 import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
+import com.company.Utility.Movement;
 import com.company.Utility.Pair;
 import org.jsfml.graphics.Sprite;
 
@@ -14,6 +15,7 @@ public class Knight extends Piece implements IEntity {
     
     //Movement
     private ArrayList<Pair<Integer>> pair;
+    private Movement movement;
     
     public Knight(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
@@ -21,6 +23,7 @@ public class Knight extends Piece implements IEntity {
         super.setStartPosX(startPosX);
         sprite = new Sprite();
         pair = new ArrayList<>();
+        movement = new Movement();
     }
     
     @Override
@@ -37,7 +40,10 @@ public class Knight extends Piece implements IEntity {
     }
     
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
-        int column = currentColumn;
+
+        movement.knightCheckMovement(allPieces, pair, currentRow, currentColumn);
+
+       /* int column = currentColumn;
         int row = currentRow;
         
         // UP LEFT
@@ -115,17 +121,17 @@ public class Knight extends Piece implements IEntity {
                 System.out.println(pair.get(i).toString());
             }
             System.out.println(pair.size());
-        }
+        }*/
     }
     
-    private void setPairs(Piece[][] allPieces, int column, int row) {
+/*    private void setPairs(Piece[][] allPieces, int column, int row) {
         if(allPieces[row][column] == null) {
             Pair whereToMove = new Pair(row, column);
             pair.add(whereToMove);
             this.setX(column);
             this.setY(row);
         }
-    }
+    }*/
     
     @Override
     public void move() {

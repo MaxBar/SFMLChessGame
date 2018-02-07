@@ -2,6 +2,7 @@ package com.company.Entities;
 
 import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
+import com.company.Utility.Movement;
 import com.company.Utility.Pair;
 import org.jsfml.graphics.Sprite;
 
@@ -12,14 +13,12 @@ public class Pawn extends Piece implements IEntity {
     private Sprite sprite;
     
     // Movement
-    private boolean hasMoved;
+    protected boolean hasMoved;
     private int hasMovedMove;
     private int hasNotMovedMove;
     private ArrayList<ArrayList<Integer>> canMoveHere;
-    //private ArrayList<ArrayList<Integer>> testArray;
-    //private List<Pair<Integer, Integer>> canMoveHere;
-    //private List<List<Integer>> canMoveHere;
     private ArrayList<Pair<Integer>> pair;
+    Movement movement;
     
     public Pawn(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
@@ -32,6 +31,7 @@ public class Pawn extends Piece implements IEntity {
         hasMovedMove = 1;
         hasNotMovedMove = 2;
         canMoveHere = new ArrayList<ArrayList<Integer>>();
+        movement = new Movement();
         
         pair = new ArrayList<>();
         
@@ -56,7 +56,11 @@ public class Pawn extends Piece implements IEntity {
     
     
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
-        if(allPieces[currentRow][currentColumn].isWhite()) {
+
+        movement.pawnCheckMovement(allPieces, pair, currentRow, currentColumn);
+
+
+ /*       if(allPieces[currentRow][currentColumn].isWhite()) {
             if(hasMoved) {
                 for(int row = currentRow; row >= currentRow - 1; --row) {
                     if(allPieces[row][currentColumn] != null) { break; }
@@ -84,17 +88,17 @@ public class Pawn extends Piece implements IEntity {
         for(int i = 0; i < pair.size(); ++i) {
             System.out.println(pair.get(i).toString());
             System.out.println(pair.size());
-        }
+        }*/
     }
     
-    private void setPairs(Piece[][] allPieces, int currentColumn, int row) {
+  /*  private void setPairs(Piece[][] allPieces, int currentColumn, int row) {
         if(allPieces[row][currentColumn] == null) {
             Pair whereToMove = new Pair(row, currentColumn);
             pair.add(whereToMove);
             this.setX(currentColumn);
             this.setY(row);
         }
-    }
+    }*/
     
     
     
@@ -135,14 +139,12 @@ public class Pawn extends Piece implements IEntity {
         }
         System.out.println(canMoveHere);
     }*/
-    
+
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+
     @Override
     public void move() {
-        if(!hasMoved) {
-            
-            hasMoved = false;
-        } else {
-        
-        }
     }
 }
