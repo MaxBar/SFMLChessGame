@@ -2,11 +2,10 @@ package com.company.Entities;
 
 import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
-import javafx.util.Pair;
+import com.company.Utility.Pair;
 import org.jsfml.graphics.Sprite;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Pawn extends Piece implements IEntity {
     //private int startPosX;
@@ -14,10 +13,13 @@ public class Pawn extends Piece implements IEntity {
     
     // Movement
     private boolean hasMoved;
-    private final int hasMovedMove;
-    private final int hasNotMovedMove;
-    private List<Pair<Integer, Integer>> canMoveHere;
+    private int hasMovedMove;
+    private int hasNotMovedMove;
+    private ArrayList<ArrayList<Integer>> canMoveHere;
+    //private ArrayList<ArrayList<Integer>> testArray;
+    //private List<Pair<Integer, Integer>> canMoveHere;
     //private List<List<Integer>> canMoveHere;
+    private ArrayList<Pair<Integer>> pair;
     
     public Pawn(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
@@ -29,7 +31,12 @@ public class Pawn extends Piece implements IEntity {
         hasMoved = false;
         hasMovedMove = 1;
         hasNotMovedMove = 2;
-        canMoveHere = new ArrayList<>();
+        canMoveHere = new ArrayList<ArrayList<Integer>>();
+        
+        pair = new ArrayList<>();
+        
+        //testArray = new ArrayList<ArrayList<>>();
+        //testArray.add(1, new ArrayList(2));
     }
     
     @Override
@@ -45,7 +52,55 @@ public class Pawn extends Piece implements IEntity {
     }
     
     
+    
+    
+    
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
+        if(allPieces[currentRow][currentColumn].isWhite()) {
+            if(hasMoved) {
+                for(int row = currentRow; row >= currentRow - 1; --row) {
+                    if(allPieces[row][currentColumn] != null) { break; }
+                    setPairs(allPieces, currentColumn, row);
+                }
+            } else {
+                for(int row = currentRow; row >= currentRow - 2; --row) {
+                    if(allPieces[row][currentColumn] != null) { break; }
+                    setPairs(allPieces, currentColumn, row);
+                }
+            }
+        } else {
+            if(hasMoved) {
+                for(int row = currentRow; row <= currentRow + 1; ++row) {
+                    if(allPieces[row][currentColumn] != null) { break; }
+                    setPairs(allPieces, currentColumn, row);
+                }
+            } else {
+                for(int row = currentRow; row <= currentRow + 2; ++row) {
+                    if(allPieces[row][currentColumn] != null) { break; }
+                    setPairs(allPieces, currentColumn, row);
+                }
+            }
+        }
+        for(int i = 0; i < pair.size(); ++i) {
+            System.out.println(pair.get(i).toString());
+            System.out.println(pair.size());
+        }
+    }
+    
+    private void setPairs(Piece[][] allPieces, int currentColumn, int row) {
+        if(allPieces[row][currentColumn] == null) {
+            Pair whereToMove = new Pair(row, currentColumn);
+            pair.add(whereToMove);
+            this.setX(currentColumn);
+            this.setY(row);
+        }
+    }
+    
+    
+    
+    
+    
+    /*public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
         if(allPieces[currentColumn][currentRow].isWhite()) {
             if(hasMoved) {
                 for(int column = currentColumn; column > currentColumn - 1; --column) {
@@ -79,7 +134,7 @@ public class Pawn extends Piece implements IEntity {
             System.out.printf((String)pair.getKey(), pair.getValue());
         }
         System.out.println(canMoveHere);
-    }
+    }*/
     
     @Override
     public void move() {

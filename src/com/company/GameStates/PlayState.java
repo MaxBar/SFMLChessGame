@@ -25,12 +25,12 @@ public class PlayState extends GameState {
     private Sprite[][] pieceSprite;
     private TextureManager textureManager;
     
-    String chessFilePath;
+    private String chessFilePath;
     private Piece[][] allpieces;
     
-    float movementSpeed;
-    boolean pressedButton;
-    float newPosY;
+    private float movementSpeed;
+    private boolean pressedButton;
+    private float newPosY;
     
     private PlayState() throws IOException {
     
@@ -97,10 +97,15 @@ public class PlayState extends GameState {
                 case KEY_RELEASED:
                     switch (event.asKeyEvent().key) {
                         case SPACE:
-                            //allpieces[1][0].checkMovement(allpieces, 0, 1);
+                            allpieces[0][0].checkMovement(allpieces, 0, 0);
+                            allpieces[allpieces[0][0].getY()][allpieces[0][0].getX()] = allpieces[0][0];
+                            //allpieces[1][0] = null;
+                            System.out.println(allpieces[0][0]);
+                            System.out.println(allpieces[1][0]);
                             //System.out.println(allpieces[0][1]);
                             pressedButton = true;
-                            newPosY += 128;
+                            //newPosY = allpieces[3][0].getY() * 128 + 19;
+                            //newPosY += 128;
                             //System.out.println(newPosY);
                             break;
                     }

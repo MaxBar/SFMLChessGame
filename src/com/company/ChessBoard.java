@@ -13,14 +13,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ChessBoard {
-    Texture[][] texture;
-    Texture[] boardTexture;
-    Sprite[] sprite;
-    Image[] image;
-    String[] fileName;
+    private Texture[][] texture;
+    private Texture[] boardTexture;
+    private Sprite[] sprite;
+    private Image[] image;
+    private String[] fileName;
     
-    Image pieceImage;
-    Texture pieceTexture;
+    private Image pieceImage;
+    private Texture pieceTexture;
     
     private List<Piece> blackPieces;
     private List<Piece> whitePieces;
