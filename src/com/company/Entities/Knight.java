@@ -6,6 +6,7 @@ import com.company.Utility.Pair;
 import org.jsfml.graphics.Sprite;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Knight extends Piece implements IEntity {
     //private int startPosX;
@@ -96,7 +97,7 @@ public class Knight extends Piece implements IEntity {
         // LEFT DOWN
         if(currentColumn > 1 && currentRow < 7) {
             column -= 2;
-            --row;
+            ++row;
             setPairs(allPieces, column, row);
             column = currentColumn;
             row = currentRow;
@@ -107,8 +108,6 @@ public class Knight extends Piece implements IEntity {
             column -= 2;
             ++row;
             setPairs(allPieces, column, row);
-            column = currentColumn;
-            row = currentRow;
         }
         
         for(int i = 0; i < pair.size(); ++i) {

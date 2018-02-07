@@ -97,14 +97,20 @@ public class PlayState extends GameState {
                 case KEY_RELEASED:
                     switch (event.asKeyEvent().key) {
                         case SPACE:
-                            allpieces[1][0].checkMovement(allpieces, 1, 0);
-                            allpieces[allpieces[1][0].getY()][allpieces[1][0].getX()] = allpieces[1][0];
-                            allpieces[1][0] = null;
+                            allpieces[0][6].checkMovement(allpieces, 0, 6);
+                            allpieces[allpieces[0][6].getY()][allpieces[0][6].getX()] = allpieces[0][6];
+                            allpieces[0][0] = null;
+                            System.out.println(allpieces[0][6]);
                             System.out.println(allpieces[1][0]);
-                            System.out.println(allpieces[2][0]);
                             //System.out.println(allpieces[0][1]);
                             pressedButton = true;
-                            newPosY = allpieces[1][0].getY() * 128 + 19;
+                            
+                            
+                            
+                            //newPosY = allpieces[1][0].getY() * 128 + 19;
+                            
+                            
+                            
                             //newPosY += 128;
                             //System.out.println(newPosY);
                             break;
