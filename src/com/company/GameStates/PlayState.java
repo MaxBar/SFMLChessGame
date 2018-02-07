@@ -97,14 +97,14 @@ public class PlayState extends GameState {
                 case KEY_RELEASED:
                     switch (event.asKeyEvent().key) {
                         case SPACE:
-                            allpieces[0][0].checkMovement(allpieces, 0, 0);
-                            allpieces[allpieces[0][0].getY()][allpieces[0][0].getX()] = allpieces[0][0];
-                            //allpieces[1][0] = null;
-                            System.out.println(allpieces[0][0]);
+                            allpieces[1][0].checkMovement(allpieces, 1, 0);
+                            allpieces[allpieces[1][0].getY()][allpieces[1][0].getX()] = allpieces[1][0];
+                            allpieces[1][0] = null;
                             System.out.println(allpieces[1][0]);
+                            System.out.println(allpieces[2][0]);
                             //System.out.println(allpieces[0][1]);
                             pressedButton = true;
-                            //newPosY = allpieces[3][0].getY() * 128 + 19;
+                            newPosY = allpieces[1][0].getY() * 128 + 19;
                             //newPosY += 128;
                             //System.out.println(newPosY);
                             break;
@@ -123,7 +123,7 @@ public class PlayState extends GameState {
             if (pieceSprite[1][0].getPosition().y <= newPosY) {
                 pieceSprite[1][0].move(0, movementSpeed * deltaTime);
                 if(pieceSprite[1][0].getPosition().y >= newPosY) {
-                    pieceSprite[1][0].setPosition(pieceSprite[1][0].getPosition().x, newPosY);
+                    pieceSprite[1][0].setPosition(pieceSprite[2][0].getPosition().x, newPosY);
                 }
             } else if (pieceSprite[1][0].getPosition().y >= (19 + 128 * 8)) {
                 pieceSprite[1][0].setPosition(pieceSprite[1][0].getPosition().x, 1024);

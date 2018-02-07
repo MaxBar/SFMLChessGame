@@ -36,56 +36,82 @@ public class Knight extends Piece implements IEntity {
     }
     
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
+        int column = currentColumn;
+        int row = currentRow;
+        
         // UP LEFT
+        if(currentRow > 1 && currentColumn > 0) {
+            --column;
+            row -= 2;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
+        }
         
         // UP RIGHT
+        if(currentRow > 1 && currentColumn < 7) {
+            ++column;
+            row -= 2;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
+        }
         
         // RIGHT UP
+        if(currentColumn < 6 && currentRow > 0) {
+            column += 2;
+            --row;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
+        }
         
         // RIGHT DOWN
+        if(currentColumn < 6 && currentRow < 7) {
+            column += 2;
+            ++row;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
+        }
         
         // DOWN RIGHT
+        if(currentRow < 6 && currentColumn < 7) {
+            ++column;
+            row += 2;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
+        }
         
         // DOWN LEFT
-        
-        // LEFT DOWN
-        
-        // LEFT UP
-        
-        
-        // LEFT UP
-        if(currentRow > 0 && currentColumn > 0) {
-            for (int row = currentRow, column = currentColumn; row > 0; --row, --column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, currentColumn, row);
-            }
-        }
-        
-        // RIGHT UP
-        if(currentRow > 0 && currentColumn < 7) {
-            for (int row = currentRow, column = currentColumn; row > 0; --row, ++column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, currentColumn, row);
-            }
+        if(currentRow < 6 && currentColumn > 0) {
+            --column;
+            row += 2;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
         }
         
         // LEFT DOWN
-        if(currentRow < 7 && currentColumn > 0) {
-            for (int row = currentRow, column = currentColumn; row > 0; ++row, --column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, currentColumn, row);
-            }
+        if(currentColumn > 1 && currentRow < 7) {
+            column -= 2;
+            --row;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
         }
         
-        // RIGHT DOWN
-        if(currentRow < 0 && currentColumn < 7) {
-            for (int row = currentRow, column = currentColumn; row > 0; ++row, ++column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, currentColumn, row);
-            }
+        // LEFT UP
+        if(currentColumn > 1 && currentRow > 0) {
+            column -= 2;
+            ++row;
+            setPairs(allPieces, column, row);
+            column = currentColumn;
+            row = currentRow;
         }
         
-        for(int i = 0; i <= pair.size(); ++i) {
+        for(int i = 0; i < pair.size(); ++i) {
             if(pair.size() > 0) {
                 System.out.println(pair.get(i).toString());
             }
