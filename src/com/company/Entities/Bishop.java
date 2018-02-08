@@ -13,7 +13,7 @@ public class Bishop extends Piece implements IEntity {
     Sprite sprite;
     
     //Movement
-    private ArrayList<Pair<Integer>> pair;
+    //private ArrayList<Pair<Integer>> pair;
     private Movement movement;
     
     public Bishop(int x, int y, boolean isWhite) {
@@ -21,10 +21,11 @@ public class Bishop extends Piece implements IEntity {
         super.startPosX = 240;
         super.setStartPosX(startPosX);
         sprite = new Sprite();
-        pair = new ArrayList<>();
+        //pair = new ArrayList<>();
         movement = new Movement();
     }
-    
+
+
     @Override
     public PieceTypes type() {
         return PieceTypes.BISHOP;
@@ -39,7 +40,7 @@ public class Bishop extends Piece implements IEntity {
     }
     
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
-        movement.bishopCheckMovement(allPieces, pair, currentRow, currentColumn);
+        movement.bishopCheckMovement(allPieces, super.pair, currentRow, currentColumn);
 
 /*        // LEFT UP
         if(currentRow > 0 && currentColumn > 0) {

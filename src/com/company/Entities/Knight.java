@@ -14,15 +14,17 @@ public class Knight extends Piece implements IEntity {
     Sprite sprite;
     
     //Movement
-    private ArrayList<Pair<Integer>> pair;
+    //private ArrayList<Pair<Integer>> pair;
     private Movement movement;
-    
+
+
+
     public Knight(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
         super.startPosX = 180;
         super.setStartPosX(startPosX);
         sprite = new Sprite();
-        pair = new ArrayList<>();
+       // pair = new ArrayList<>();
         movement = new Movement();
     }
     
@@ -41,7 +43,7 @@ public class Knight extends Piece implements IEntity {
     
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
 
-        movement.knightCheckMovement(allPieces, pair, currentRow, currentColumn);
+        movement.knightCheckMovement(allPieces, super.pair, currentRow, currentColumn);
 
        /* int column = currentColumn;
         int row = currentRow;

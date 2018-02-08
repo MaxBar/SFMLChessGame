@@ -17,7 +17,7 @@ public class Pawn extends Piece implements IEntity {
     private int hasMovedMove;
     private int hasNotMovedMove;
     private ArrayList<ArrayList<Integer>> canMoveHere;
-    private ArrayList<Pair<Integer>> pair;
+   // private ArrayList<Pair<Integer>> pair;
     Movement movement;
     
     public Pawn(int x, int y, boolean isWhite) {
@@ -33,11 +33,13 @@ public class Pawn extends Piece implements IEntity {
         canMoveHere = new ArrayList<ArrayList<Integer>>();
         movement = new Movement();
         
-        pair = new ArrayList<>();
+        //pair = new ArrayList<>();
         
         //testArray = new ArrayList<ArrayList<>>();
         //testArray.add(1, new ArrayList(2));
     }
+
+
     
     @Override
     public PieceTypes type() {
@@ -57,7 +59,7 @@ public class Pawn extends Piece implements IEntity {
     
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
 
-        movement.pawnCheckMovement(allPieces, pair, currentRow, currentColumn);
+        movement.pawnCheckMovement(allPieces, super.pair, currentRow, currentColumn);
 
 
  /*       if(allPieces[currentRow][currentColumn].isWhite()) {

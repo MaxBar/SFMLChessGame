@@ -2,8 +2,11 @@ package com.company.Entities;
 
 import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
+import com.company.Utility.Pair;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
+
+import java.util.ArrayList;
 
 public abstract class Piece {
 
@@ -14,6 +17,7 @@ public abstract class Piece {
     private int endPosX;
     private int endPosY;
     private boolean isWhite;
+    ArrayList<Pair<Integer>> pair;
 
     public IntRect getIntRect() {
 
@@ -39,7 +43,12 @@ public abstract class Piece {
         startPosY = 0;
         endPosX = 60;
         endPosY = 60;
+        pair = new ArrayList<>();
 
+    }
+
+    public ArrayList<Pair<Integer>> getPair() {
+        return pair;
     }
 
     public boolean isWhite() {

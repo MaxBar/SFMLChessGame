@@ -13,7 +13,7 @@ public class Queen extends Piece implements IEntity{
     Sprite sprite;
 
     //Movement
-    private ArrayList<Pair<Integer>> pair;
+    //private ArrayList<Pair<Integer>> pair;
     private Movement movement;
 
     public Queen(int x, int y, boolean isWhite) {
@@ -22,8 +22,9 @@ public class Queen extends Piece implements IEntity{
         super.setStartPosX(startPosX);
         sprite = new Sprite();
         movement = new Movement();
-        pair = new ArrayList<>();
+       //pair = new ArrayList<>();
     }
+
 
 
     
@@ -42,7 +43,7 @@ public class Queen extends Piece implements IEntity{
     
     @Override
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
-        movement.queenCheckMovement(allPieces, pair, currentRow, currentColumn);
+        movement.queenCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
     
     @Override

@@ -19,7 +19,7 @@ public class Pair<T>{
     
     @Override
     public String toString() {
-        return "Row: " + p1 + "\r\nColumn: " + p2;
+        return "Row: " + p1 + "\r\nColumn: " + p2 + "\r\n";
     }
     
     //Pair<Integer> pair = new Pair<Integer>(1,2);

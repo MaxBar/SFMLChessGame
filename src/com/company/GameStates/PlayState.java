@@ -3,19 +3,14 @@ package com.company.GameStates;
 import com.company.ChessBoard;
 import com.company.Engine.GameEngine;
 import com.company.Engine.GameState;
-import com.company.Entities.AI;
-import com.company.Entities.Pawn;
+import AI.AI;
 import com.company.Entities.Piece;
 import com.company.Managers.TextureManager;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.event.Event;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PlayState extends GameState {
     private static PlayState playState = null;
@@ -46,7 +41,8 @@ public class PlayState extends GameState {
     @Override
     public void init(RenderWindow window) throws IOException {
         window.clear();
-        
+
+        ai = new AI[2];
         movementSpeed = 0.2f;
         pressedButton = false;
         newPosY = 19 + 128;
@@ -84,6 +80,8 @@ public class PlayState extends GameState {
                 }
             }
         }
+        ai[0] = new AI(chessBoard.getWhitePieces());
+        ai[1] = new AI(chessBoard.getBlackPieces());
     }
     
     @Override
@@ -97,11 +95,11 @@ public class PlayState extends GameState {
                 case KEY_RELEASED:
                     switch (event.asKeyEvent().key) {
                         case SPACE:
-                            allpieces[0][6].checkMovement(allpieces, 0, 6);
+                            ai[0].handleEvents(allpieces);
+                            ai[1].handleEvents(allpieces);
+                           /* allpieces[0][6].checkMovement(allpieces, 0, 6);
                             allpieces[allpieces[0][6].getY()][allpieces[0][6].getX()] = allpieces[0][6];
-                            allpieces[0][0] = null;
-                            System.out.println(allpieces[0][6]);
-                            System.out.println(allpieces[1][0]);
+                            allpieces[0][0] = null;*/
                             //System.out.println(allpieces[0][1]);
                             pressedButton = true;
                             

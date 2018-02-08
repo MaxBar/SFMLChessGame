@@ -247,15 +247,14 @@ public class Movement {
         // LEFT UP
         if(currentColumn > 1 && currentRow > 0) {
             column -= 2;
-            ++row;
+            --row;
             setPairs(allPieces, tempPair, column, row);
         }
 
         for(int i = 0; i < pair.size(); ++i) {
-            if(pair.size() > 0) {
+            if (pair.size() > 0) {
                 System.out.println(pair.get(i).toString());
             }
-            System.out.println(pair.size());
         }
     }
 
@@ -271,24 +270,24 @@ public class Movement {
         if(allPieces[currentRow][currentColumn].isWhite()) {
             if(pawn.getHasMoved()) {
                 for(int row = currentRow; row >= currentRow - 1; --row) {
-                    if(allPieces[row][currentColumn] != null) { break; }
+                   // if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             } else {
                 for(int row = currentRow; row >= currentRow - 2; --row) {
-                    if(allPieces[row][currentColumn] != null) { break; }
+                  //  if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             }
         } else {
             if(pawn.getHasMoved()) {
                 for(int row = currentRow; row <= currentRow + 1; ++row) {
-                    if(allPieces[row][currentColumn] != null) { break; }
+                  //  if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             } else {
                 for(int row = currentRow; row <= currentRow + 2; ++row) {
-                    if(allPieces[row][currentColumn] != null) { break; }
+                  //  if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             }
@@ -299,7 +298,7 @@ public class Movement {
         }
     }
 
-    private void setPairs(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int column, int row) {
+    private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int column, int row) {
         if(allPieces[row][column] == null) {
             Pair whereToMove = new Pair(row, column);
             pair.add(whereToMove);

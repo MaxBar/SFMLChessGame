@@ -13,7 +13,7 @@ public class King extends Piece implements IEntity {
     Sprite sprite;
 
     //Movement
-    private ArrayList<Pair<Integer>> pair;
+   // private ArrayList<Pair<Integer>> pair;
     private Movement movement;
     
     public King(int x, int y, boolean isWhite) {
@@ -21,9 +21,10 @@ public class King extends Piece implements IEntity {
         super.startPosX = 60;
         super.setStartPosX(startPosX);
         sprite = new Sprite();
-        pair = new ArrayList<>();
+        //pair = new ArrayList<>();
         movement = new Movement();
     }
+
     
     @Override
     public PieceTypes type() {
@@ -39,7 +40,7 @@ public class King extends Piece implements IEntity {
     }
 
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
-        movement.kingCheckMovement(allPieces, pair, currentRow, currentColumn);
+        movement.kingCheckMovement(allPieces, super.pair, currentRow, currentColumn);
 //        int column = currentColumn;
 //        int row = currentRow;
 //

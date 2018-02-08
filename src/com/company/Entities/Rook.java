@@ -14,7 +14,7 @@ public class Rook extends Piece implements IEntity {
     
     //Movement
     private boolean hasMoved;
-    private ArrayList<Pair<Integer>> pair;
+    //private ArrayList<Pair<Integer>> pair;
     private Movement movement;
     
     public Rook(int x, int y, boolean isWhite) {
@@ -22,10 +22,11 @@ public class Rook extends Piece implements IEntity {
         super.startPosX = 120;
         super.setStartPosX(startPosX);
         sprite = new Sprite();
-        pair = new ArrayList<>();
+        //pair = new ArrayList<>();
         movement = new Movement();
     }
-    
+
+
     @Override
     public PieceTypes type() {
         return PieceTypes.ROOK;
@@ -40,7 +41,7 @@ public class Rook extends Piece implements IEntity {
     }
     
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
-        movement.rookCheckMovement(allPieces, pair, currentRow, currentColumn);
+        movement.rookCheckMovement(allPieces, super.pair, currentRow, currentColumn);
 //            // UP
 //            if(currentRow > 0) {
 //                for (int row = currentRow; row > 0; --row) {
