@@ -12,7 +12,7 @@ public class Movement {
         ArrayList<Pair<Integer>> tempPair = pair;
         // UP
         if(currentRow > 0) {
-            for (int row = currentRow; row > 0; --row) {
+            for (int row = currentRow - 1; row > 0; --row) {
                 if(allPieces[row][currentColumn] != null) { break; }
                 setPairs(allPieces, tempPair, currentColumn, row);
             }
@@ -20,7 +20,7 @@ public class Movement {
 
         // DOWN
         if(currentRow < 7) {
-            for (int row = currentRow; row < 7; ++row) {
+            for (int row = currentRow + 1; row < 7; ++row) {
                 if(allPieces[row][currentColumn] != null) { break; }
                 setPairs(allPieces, tempPair, currentColumn, row);
             }
@@ -28,7 +28,7 @@ public class Movement {
 
         // LEFT
         if(currentColumn > 0) {
-            for (int column = currentColumn; column > 0; --column) {
+            for (int column = currentColumn - 1; column > 0; --column) {
                 if(allPieces[currentRow][column] != null) { break; }
                 setPairs(allPieces, tempPair, column, currentRow);
             }
@@ -36,18 +36,16 @@ public class Movement {
 
         // RIGHT
         if(currentColumn < 7) {
-            for (int column = currentColumn; column > 7; ++column) {
+            for (int column = currentColumn + 1; column > 7; ++column) {
                 if(allPieces[currentRow][column] != null) { break; }
                 setPairs(allPieces, tempPair, column, currentRow);
             }
         }
-
-
-        /*for(int i = 0; i <= tempPair.size(); ++i) {
-            if(tempPair.size() > 0) {
-                System.out.println(tempPair.get(i).toString());
-            }
-            System.out.println(tempPair.size());
+    
+    
+        /*for(int i = 0; i < pair.size(); ++i) {
+            System.out.println("ROOK MOVEMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println(pair.get(i).toString());
         }*/
     }
 
@@ -62,14 +60,14 @@ public class Movement {
         ArrayList<Pair<Integer>> tempPair = pair;
 
         // UP
-        if (currentRow > 0) {
+        if (currentRow > 0 && allPieces[currentRow - 1][currentColumn] == null) {
             --row;
             setPairs(allPieces, tempPair, column, row);
             row = currentRow;
         }
 
         // UP LEFT
-        if(currentRow > 0 && currentColumn > 0) {
+        if(currentRow > 0 && currentColumn > 0 && allPieces[currentRow - 1][currentColumn - 1] == null) {
             --column;
             --row;
             setPairs(allPieces, tempPair, column, row);
@@ -78,7 +76,7 @@ public class Movement {
         }
 
         // UP RIGHT
-        if(currentRow > 0 && currentColumn < 7) {
+        if(currentRow > 0 && currentColumn < 7 && allPieces[currentRow - 1][currentColumn + 1] == null) {
             ++column;
             --row;
             setPairs(allPieces, tempPair, column, row);
@@ -87,14 +85,14 @@ public class Movement {
         }
 
         //DOWN
-        if (currentRow < 7) {
+        if (currentRow < 7 && allPieces[currentRow + 1][currentColumn] == null) {
             ++row;
             setPairs(allPieces, tempPair, column, row);
             row = currentRow;
         }
 
         // DOWN RIGHT
-        if(currentRow < 7 && currentColumn < 7) {
+        if(currentRow < 7 && currentColumn < 7 && allPieces[currentRow + 1][currentColumn + 1] == null) {
             ++column;
             ++row;
             setPairs(allPieces, tempPair, column, row);
@@ -103,7 +101,7 @@ public class Movement {
         }
 
         // DOWN LEFT
-        if(currentRow < 7 && currentColumn > 0) {
+        if(currentRow < 7 && currentColumn > 0 && allPieces[currentRow + 1][currentColumn - 1] == null) {
             --column;
             ++row;
             setPairs(allPieces, tempPair, column, row);
@@ -112,14 +110,14 @@ public class Movement {
         }
 
         // LEFT
-        if (currentColumn > 0) {
+        if (currentColumn > 0 && allPieces[currentRow][currentColumn - 1] == null) {
             --column;
             setPairs(allPieces, tempPair, column, row);
             column = currentColumn;
         }
 
         // RIGHT
-        if (currentColumn < 7) {
+        if (currentColumn < 7 && allPieces[currentRow][currentColumn + 1] == null) {
             ++column;
             setPairs(allPieces, tempPair, column, row);
         }
@@ -137,33 +135,33 @@ public class Movement {
 
         // LEFT UP
         if(currentRow > 0 && currentColumn > 0) {
-            for (int row = currentRow, column = currentColumn; row > 0; --row, --column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, tempPair, currentColumn, row);
+            for (int row = currentRow - 1, column = currentColumn - 1; row >= 0 && column >= 0; --row, --column) {
+                if(allPieces[row][column] != null) { break; }
+                setPairs(allPieces, tempPair, column, row);
             }
         }
 
         // RIGHT UP
         if(currentRow > 0 && currentColumn < 7) {
-            for (int row = currentRow, column = currentColumn; row > 0; --row, ++column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, tempPair, currentColumn, row);
+            for (int row = currentRow - 1, column = currentColumn + 1; row >= 0 && column <= 7; --row, ++column) {
+                if(allPieces[row][column] != null) { break; }
+                setPairs(allPieces, tempPair, column, row);
             }
         }
 
         // LEFT DOWN
         if(currentRow < 7 && currentColumn > 0) {
-            for (int row = currentRow, column = currentColumn; row > 0; ++row, --column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, tempPair, currentColumn, row);
+            for (int row = currentRow + 1, column = currentColumn - 1; row >= 0 && column >= 0; ++row, --column) {
+                if(allPieces[row][column] != null) { break; }
+                setPairs(allPieces, tempPair, column, row);
             }
         }
 
         // RIGHT DOWN
-        if(currentRow < 0 && currentColumn < 7) {
-            for (int row = currentRow, column = currentColumn; row > 0; ++row, ++column) {
-                if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, tempPair, currentColumn, row);
+        if(currentRow < 7  && currentColumn < 7) {
+            for (int row = currentRow + 1, column = currentColumn + 1; row >= 0 && column <= 7; ++row, ++column) {
+                if(allPieces[row][column] != null) { break; }
+                setPairs(allPieces, tempPair, column, row);
             }
         }
 
@@ -182,7 +180,7 @@ public class Movement {
         int row = currentRow;
 
         // UP LEFT
-        if(currentRow > 1 && currentColumn > 0) {
+        if(currentRow > 1 && currentColumn > 0 && allPieces[currentRow - 2][currentColumn - 1] == null) {
             --column;
             row -= 2;
             setPairs(allPieces, tempPair, column, row);
@@ -191,7 +189,7 @@ public class Movement {
         }
 
         // UP RIGHT
-        if(currentRow > 1 && currentColumn < 7) {
+        if(currentRow > 1 && currentColumn < 7 && allPieces[currentRow - 2][currentColumn + 1] == null) {
             ++column;
             row -= 2;
             setPairs(allPieces, tempPair, column, row);
@@ -200,7 +198,7 @@ public class Movement {
         }
 
         // RIGHT UP
-        if(currentColumn < 6 && currentRow > 0) {
+        if(currentColumn < 6 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn + 2] == null) {
             column += 2;
             --row;
             setPairs(allPieces, tempPair, column, row);
@@ -209,7 +207,7 @@ public class Movement {
         }
 
         // RIGHT DOWN
-        if(currentColumn < 6 && currentRow < 7) {
+        if(currentColumn < 6 && currentRow < 7 && allPieces[currentRow + 1][currentColumn + 2] == null) {
             column += 2;
             ++row;
             setPairs(allPieces, tempPair, column, row);
@@ -218,7 +216,7 @@ public class Movement {
         }
 
         // DOWN RIGHT
-        if(currentRow < 6 && currentColumn < 7) {
+        if(currentRow < 6 && currentColumn < 7 && allPieces[currentRow + 2][currentColumn + 1] == null) {
             ++column;
             row += 2;
             setPairs(allPieces, tempPair, column, row);
@@ -227,7 +225,7 @@ public class Movement {
         }
 
         // DOWN LEFT
-        if(currentRow < 6 && currentColumn > 0) {
+        if(currentRow < 6 && currentColumn > 0 && allPieces[currentRow + 2][currentColumn - 1] == null) {
             --column;
             row += 2;
             setPairs(allPieces, tempPair, column, row);
@@ -236,7 +234,7 @@ public class Movement {
         }
 
         // LEFT DOWN
-        if(currentColumn > 1 && currentRow < 7) {
+        if(currentColumn > 1 && currentRow < 7 && allPieces[currentRow + 1][currentColumn - 2] == null) {
             column -= 2;
             ++row;
             setPairs(allPieces, tempPair, column, row);
@@ -245,7 +243,7 @@ public class Movement {
         }
 
         // LEFT UP
-        if(currentColumn > 1 && currentRow > 0) {
+        if(currentColumn > 1 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn - 2] == null) {
             column -= 2;
             --row;
             setPairs(allPieces, tempPair, column, row);
@@ -258,7 +256,7 @@ public class Movement {
         }*/
     }
 
-    public void pawnCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
+    public void pawnCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, int currentColumn) {
 
         ArrayList<Pair<Integer>> tempPair = pair;
         System.out.println("Row: " + currentRow + "\r\nColumn: " + currentColumn + "*********************************************************");
@@ -270,33 +268,32 @@ public class Movement {
         
         if(allPieces[currentRow][currentColumn].isWhite()) {
             if(pawn.getHasMoved()) {
-                for(int row = currentRow; row >= currentRow - 1; --row) {
-                   // if(allPieces[row][currentColumn] != null) { break; }
+                for(int row = currentRow - 1; row >= currentRow - 1; --row) {
+                   if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             } else {
-                for(int row = currentRow; row >= currentRow - 2; --row) {
-                  //  if(allPieces[row][currentColumn] != null) { break; }
+                for(int row = currentRow - 1; row >= currentRow - 2; --row) {
+                  if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             }
         } else {
             if(pawn.getHasMoved()) {
-                for(int row = currentRow; row <= currentRow + 1; ++row) {
-                  //  if(allPieces[row][currentColumn] != null) { break; }
+                for(int row = currentRow + 1; row <= currentRow + 1; ++row) {
+                  if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             } else {
-                for(int row = currentRow; row <= currentRow + 2; ++row) {
-                  //  if(allPieces[row][currentColumn] != null) { break; }
+                for(int row = currentRow + 1; row <= currentRow + 2; ++row) {
+                  if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, currentColumn, row);
                 }
             }
         }
-        /*for(int i = 0; i < pair.size(); ++i) {
+        for(int i = 0; i < pair.size(); ++i) {
             System.out.println(pair.get(i).toString());
-            System.out.println(pair.size());
-        }*/
+        }
     }
 
     private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int column, int row) {

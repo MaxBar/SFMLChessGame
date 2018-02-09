@@ -56,6 +56,10 @@ public abstract class Piece {
         return pair;
     }
     
+    public void clearPair() {
+        pair.clear();
+    }
+    
     public boolean isWhite() {
         return isWhite;
     }
