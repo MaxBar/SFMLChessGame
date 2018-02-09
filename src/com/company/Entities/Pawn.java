@@ -13,7 +13,7 @@ public class Pawn extends Piece implements IEntity {
     private Sprite sprite;
     
     // Movement
-    protected boolean hasMoved;
+    private boolean hasMoved;
     private int hasMovedMove;
     private int hasNotMovedMove;
     private ArrayList<ArrayList<Integer>> canMoveHere;

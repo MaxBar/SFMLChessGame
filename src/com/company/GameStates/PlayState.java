@@ -3,7 +3,7 @@ package com.company.GameStates;
 import com.company.ChessBoard;
 import com.company.Engine.GameEngine;
 import com.company.Engine.GameState;
-import AI.AI;
+import com.company.AI.AI;
 import com.company.Entities.Piece;
 import com.company.Managers.TextureManager;
 import org.jsfml.graphics.*;
@@ -96,7 +96,7 @@ public class PlayState extends GameState {
                     switch (event.asKeyEvent().key) {
                         case SPACE:
                             ai[0].handleEvents(allpieces, pieceSprite);
-                            ai[1].handleEvents(allpieces, pieceSprite);
+                            //ai[1].handleEvents(allpieces, pieceSprite);
                            /* allpieces[0][6].checkMovement(allpieces, 0, 6);
                             allpieces[allpieces[0][6].getY()][allpieces[0][6].getX()] = allpieces[0][6];
                             allpieces[0][0] = null;*/

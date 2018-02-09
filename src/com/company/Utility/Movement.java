@@ -43,12 +43,12 @@ public class Movement {
         }
 
 
-        for(int i = 0; i <= tempPair.size(); ++i) {
+        /*for(int i = 0; i <= tempPair.size(); ++i) {
             if(tempPair.size() > 0) {
                 System.out.println(tempPair.get(i).toString());
             }
             System.out.println(tempPair.size());
-        }
+        }*/
     }
 
     public void queenCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
@@ -124,12 +124,12 @@ public class Movement {
             setPairs(allPieces, tempPair, column, row);
         }
 
-        for(int i = 0; i < pair.size(); ++i) {
+        /*for(int i = 0; i < pair.size(); ++i) {
             if(pair.size() > 0) {
                 System.out.println(pair.get(i).toString());
             }
             System.out.println(pair.size());
-        }
+        }*/
     }
 
     public void bishopCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
@@ -167,12 +167,12 @@ public class Movement {
             }
         }
 
-        for(int i = 0; i <= pair.size(); ++i) {
+        /*for(int i = 0; i <= pair.size(); ++i) {
             if(pair.size() > 0) {
                 System.out.println(pair.get(i).toString());
             }
             System.out.println(pair.size());
-        }
+        }*/
     }
 
     public void knightCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
@@ -251,22 +251,23 @@ public class Movement {
             setPairs(allPieces, tempPair, column, row);
         }
 
-        for(int i = 0; i < pair.size(); ++i) {
+        /*for(int i = 0; i < pair.size(); ++i) {
             if (pair.size() > 0) {
                 System.out.println(pair.get(i).toString());
             }
-        }
+        }*/
     }
 
     public void pawnCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
 
         ArrayList<Pair<Integer>> tempPair = pair;
-        Pawn pawn = null;
+        System.out.println("Row: " + currentRow + "\r\nColumn: " + currentColumn + "*********************************************************");
+        Pawn pawn = (Pawn)allPieces[currentRow][currentColumn];
 
-        if(allPieces[currentRow][currentColumn] instanceof Pawn) {
+        /*if(allPieces[currentRow][currentColumn] instanceof Pawn) {
             pawn = (Pawn)allPieces[currentRow][currentColumn];
-        }
-
+        }*/
+        
         if(allPieces[currentRow][currentColumn].isWhite()) {
             if(pawn.getHasMoved()) {
                 for(int row = currentRow; row >= currentRow - 1; --row) {
@@ -292,10 +293,10 @@ public class Movement {
                 }
             }
         }
-        for(int i = 0; i < pair.size(); ++i) {
+        /*for(int i = 0; i < pair.size(); ++i) {
             System.out.println(pair.get(i).toString());
             System.out.println(pair.size());
-        }
+        }*/
     }
 
     private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int column, int row) {

@@ -47,10 +47,15 @@ public abstract class Piece {
 
     }
 
+    //public ArrayList<Pair<Integer>> getPair() {
+    //    return pair;
+    //}
+    
+    
     public ArrayList<Pair<Integer>> getPair() {
         return pair;
     }
-
+    
     public boolean isWhite() {
         return isWhite;
     }
