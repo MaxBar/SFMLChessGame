@@ -14,7 +14,7 @@ public class Movement {
         if(currentRow > 0) {
             for (int row = currentRow - 1; row > 0; --row) {
                 if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, tempPair, currentColumn, row);
+                setPairs(allPieces, tempPair, row, currentColumn);
             }
         }
 
@@ -22,7 +22,7 @@ public class Movement {
         if(currentRow < 7) {
             for (int row = currentRow + 1; row < 7; ++row) {
                 if(allPieces[row][currentColumn] != null) { break; }
-                setPairs(allPieces, tempPair, currentColumn, row);
+                setPairs(allPieces, tempPair, row, currentColumn);
             }
         }
 
@@ -62,7 +62,7 @@ public class Movement {
         // UP
         if (currentRow > 0 && allPieces[currentRow - 1][currentColumn] == null) {
             --row;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
             row = currentRow;
         }
 
@@ -70,7 +70,7 @@ public class Movement {
         if(currentRow > 0 && currentColumn > 0 && allPieces[currentRow - 1][currentColumn - 1] == null) {
             --column;
             --row;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
             column = currentColumn;
             row = currentRow;
         }
@@ -79,7 +79,7 @@ public class Movement {
         if(currentRow > 0 && currentColumn < 7 && allPieces[currentRow - 1][currentColumn + 1] == null) {
             ++column;
             --row;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
             column = currentColumn;
             row = currentRow;
         }
@@ -87,7 +87,7 @@ public class Movement {
         //DOWN
         if (currentRow < 7 && allPieces[currentRow + 1][currentColumn] == null) {
             ++row;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
             row = currentRow;
         }
 
@@ -95,7 +95,7 @@ public class Movement {
         if(currentRow < 7 && currentColumn < 7 && allPieces[currentRow + 1][currentColumn + 1] == null) {
             ++column;
             ++row;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
             column = currentColumn;
             row = currentRow;
         }
@@ -104,7 +104,7 @@ public class Movement {
         if(currentRow < 7 && currentColumn > 0 && allPieces[currentRow + 1][currentColumn - 1] == null) {
             --column;
             ++row;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
             column = currentColumn;
             row = currentRow;
         }
@@ -112,14 +112,14 @@ public class Movement {
         // LEFT
         if (currentColumn > 0 && allPieces[currentRow][currentColumn - 1] == null) {
             --column;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
             column = currentColumn;
         }
 
         // RIGHT
         if (currentColumn < 7 && allPieces[currentRow][currentColumn + 1] == null) {
             ++column;
-            setPairs(allPieces, tempPair, column, row);
+            setPairs(allPieces, tempPair, row, column);
         }
 
         /*for(int i = 0; i < pair.size(); ++i) {
@@ -137,7 +137,7 @@ public class Movement {
         if(currentRow > 0 && currentColumn > 0) {
             for (int row = currentRow - 1, column = currentColumn - 1; row >= 0 && column >= 0; --row, --column) {
                 if(allPieces[row][column] != null) { break; }
-                setPairs(allPieces, tempPair, column, row);
+                setPairs(allPieces, tempPair, row, column);
             }
         }
 
@@ -145,23 +145,23 @@ public class Movement {
         if(currentRow > 0 && currentColumn < 7) {
             for (int row = currentRow - 1, column = currentColumn + 1; row >= 0 && column <= 7; --row, ++column) {
                 if(allPieces[row][column] != null) { break; }
-                setPairs(allPieces, tempPair, column, row);
+                setPairs(allPieces, tempPair, row, column);
             }
         }
 
         // LEFT DOWN
         if(currentRow < 7 && currentColumn > 0) {
-            for (int row = currentRow + 1, column = currentColumn - 1; row >= 0 && column >= 0; ++row, --column) {
+            for (int row = currentRow + 1, column = currentColumn - 1; row <= 7 && column >= 0; ++row, --column) {
                 if(allPieces[row][column] != null) { break; }
-                setPairs(allPieces, tempPair, column, row);
+                setPairs(allPieces, tempPair, row, column);
             }
         }
 
         // RIGHT DOWN
         if(currentRow < 7  && currentColumn < 7) {
-            for (int row = currentRow + 1, column = currentColumn + 1; row >= 0 && column <= 7; ++row, ++column) {
+            for (int row = currentRow + 1, column = currentColumn + 1; row <= 7 && column <= 7; ++row, ++column) {
                 if(allPieces[row][column] != null) { break; }
-                setPairs(allPieces, tempPair, column, row);
+                setPairs(allPieces, tempPair, row, column);
             }
         }
 
@@ -270,24 +270,24 @@ public class Movement {
             if(pawn.getHasMoved()) {
                 for(int row = currentRow - 1; row >= currentRow - 1; --row) {
                    if(allPieces[row][currentColumn] != null) { break; }
-                    setPairs(allPieces, tempPair, currentColumn, row);
+                    setPairs(allPieces, tempPair, row, currentColumn);
                 }
             } else {
                 for(int row = currentRow - 1; row >= currentRow - 2; --row) {
                   if(allPieces[row][currentColumn] != null) { break; }
-                    setPairs(allPieces, tempPair, currentColumn, row);
+                    setPairs(allPieces, tempPair, row, currentColumn);
                 }
             }
         } else {
             if(pawn.getHasMoved()) {
                 for(int row = currentRow + 1; row <= currentRow + 1; ++row) {
                   if(allPieces[row][currentColumn] != null) { break; }
-                    setPairs(allPieces, tempPair, currentColumn, row);
+                    setPairs(allPieces, tempPair, row, currentColumn);
                 }
             } else {
                 for(int row = currentRow + 1; row <= currentRow + 2; ++row) {
                   if(allPieces[row][currentColumn] != null) { break; }
-                    setPairs(allPieces, tempPair, currentColumn, row);
+                    setPairs(allPieces, tempPair, row, currentColumn);
                 }
             }
         }
@@ -296,7 +296,7 @@ public class Movement {
         }
     }
 
-    private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int column, int row) {
+    private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int row, int column) {
         if(allPieces[row][column] == null) {
             Pair whereToMove = new Pair(row, column);
             pair.add(whereToMove);

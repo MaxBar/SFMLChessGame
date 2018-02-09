@@ -7,6 +7,7 @@ import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Piece {
 
@@ -52,7 +53,7 @@ public abstract class Piece {
     //}
     
     
-    public ArrayList<Pair<Integer>> getPair() {
+    public List<Pair<Integer>> getPair() {
         return pair;
     }
     

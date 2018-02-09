@@ -1,25 +1,25 @@
 package com.company.Utility;
 
 public class Pair<T>{
-        T p1;
-        T p2;
+        private T row;
+        private T column;
         
-        public Pair(T p1, T p2) {
-            this.p1 = p1;
-            this.p2 = p2;
+        public Pair(T row, T column) {
+            this.row = row;
+            this.column = column;
         }
         
-        public T getPairNumber1() {
-            return p1;
+        public T getRow() {
+            return row;
         }
         
-        public T getPairNumber2() {
-            return p2;
+        public T getColumn() {
+            return column;
         }
     
     @Override
     public String toString() {
-        return "Row: " + p1 + "\r\nColumn: " + p2 + "\r\n";
+        return "Row: " + row + "\r\nColumn: " + column + "\r\n";
     }
     
     //Pair<Integer> pair = new Pair<Integer>(1,2);

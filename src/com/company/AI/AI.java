@@ -12,7 +12,7 @@ import java.util.Random;
 public class AI {
 
     private List<Piece> existingPieces;
-    private ArrayList<ArrayList<Pair<Integer>>> possibleMovementPair;
+    private ArrayList<List<Pair<Integer>>> possibleMovementPair;
     private Random random;
     private int newPosRow;
     private int newPosColumn;
@@ -68,8 +68,8 @@ public class AI {
         
         
         toMove = random.nextInt((max - min) + 1) + min;
-        newPosRow = possibleMovementPair.get(pieceToMove).get(toMove).getPairNumber1();
-        newPosColumn = possibleMovementPair.get(pieceToMove).get(toMove).getPairNumber2();
+        newPosRow = possibleMovementPair.get(pieceToMove).get(toMove).getRow();
+        newPosColumn = possibleMovementPair.get(pieceToMove).get(toMove).getColumn();
 
 
         // Sätter en vector till nya positionen på brädet
