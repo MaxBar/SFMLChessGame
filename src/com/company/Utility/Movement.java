@@ -3,10 +3,23 @@ package com.company.Utility;
 
 import com.company.Entities.Pawn;
 import com.company.Entities.Piece;
+import org.jsfml.graphics.RectangleShape;
+import org.jsfml.system.Vector2f;
 
+import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 
 public class Movement {
+    RectangleShape line[] = new RectangleShape[2];
+    
+    /*public void lines(int currentColumn, int currentRow, int row) {
+        line[0].setPosition(new Vector2f(currentColumn, currentRow));
+        line[1].setPosition(new Vector2f(row, currentColumn));
+    }
+    
+    public RectangleShape[] getLine() {
+        return line;
+    }*/
 
     public void rookCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
         ArrayList<Pair<Integer>> tempPair = pair;
@@ -271,6 +284,9 @@ public class Movement {
                 for(int row = currentRow - 1; row >= currentRow - 1; --row) {
                    if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
+                   //pawn.lines(currentColumn, currentRow, row);
+                   //line[0].setPosition(new Vector2f(currentColumn, currentRow));
+                   //line[1].setPosition(new Vector2f(row, currentColumn));
                 }
             } else {
                 for(int row = currentRow - 1; row >= currentRow - 2; --row) {

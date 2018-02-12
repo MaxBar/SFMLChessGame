@@ -6,6 +6,7 @@ import com.company.Engine.GameState;
 import com.company.AI.AI;
 import com.company.Entities.Piece;
 import com.company.Managers.TextureManager;
+import com.company.Utility.DrawLine;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.event.Event;
@@ -26,6 +27,10 @@ public class PlayState extends GameState {
     private float movementSpeed;
     private boolean pressedButton;
     private float newPosY;
+    
+    //TEST
+    private RectangleShape[] lines = new RectangleShape[2];
+    private DrawLine line;
     
     private PlayState() throws IOException {
     
@@ -122,6 +127,14 @@ public class PlayState extends GameState {
     @Override
     public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         window.clear(Color.BLACK);
+        //lines[0].setSize(new Vector2f(500, 500));
+        line = new DrawLine(5, 19 + 45, 19 + 45, 1000, 0, Color.GREEN);
+        line.rotateLine(-45);
+        lines[0] = new RectangleShape(new Vector2f(5, 5));
+        lines[1] = new RectangleShape(new Vector2f(3, 1000));
+        lines[1].setFillColor(Color.GREEN);
+        lines[0].setPosition(new Vector2f(10, 0));
+        lines[1].setPosition(new Vector2f(20, 100));
         //System.out.println(pieceSprite[1][0].getPosition().y);
      /*   if(pressedButton) {
             if (pieceSprite[1][0].getPosition().y <= newPosY) {
@@ -153,6 +166,11 @@ public class PlayState extends GameState {
                 }
             }
         }
+        line.draw(window);
+        /*for(int i = 0; i < lines.length; ++i) {
+            window.draw(lines[i]);
+        }*/
+        
         window.display();
     }
 }

@@ -4,7 +4,9 @@ import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
 import com.company.Utility.Movement;
 import com.company.Utility.Pair;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.Sprite;
+import org.jsfml.system.Vector2f;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,17 @@ public class Pawn extends Piece implements IEntity {
     private ArrayList<ArrayList<Integer>> canMoveHere;
    // private ArrayList<Pair<Integer>> pair;
     Movement movement;
+    
+    private RectangleShape[] line = new RectangleShape[2];
+    
+    /*public void lines(int currentColumn, int currentRow, int row) {
+        line[0].setPosition(new Vector2f(currentColumn, currentRow));
+        line[1].setPosition(new Vector2f(row, currentColumn));
+    }
+    
+    public RectangleShape[] getLine() {
+        return line;
+    }*/
     
     public Pawn(int x, int y, boolean isWhite) {
         super(x, y, isWhite);

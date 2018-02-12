@@ -16,6 +16,8 @@ public class AI {
     private Random random;
     private int newPosRow;
     private int newPosColumn;
+    private int oldPosRow;
+    private int oldPosColumn;
 
 
     public AI(List<Piece> existingPieces) {
@@ -77,25 +79,44 @@ public class AI {
         // Flyttar spriten till den nya positionen via vectorns x och y värden
         sprites[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()].setPosition(vector2f.x, vector2f.y);
         
-        int oldPosRow = existingPieces.get(pieceToMove).getY();
-        int oldPosColumn = existingPieces.get(pieceToMove).getX();
+        oldPosRow = existingPieces.get(pieceToMove).getY();
+        oldPosColumn = existingPieces.get(pieceToMove).getX();
         System.out.println(oldPosRow + "--------------------------------------------------");
         System.out.println(oldPosColumn + "--------------------------------------------------");
     
         Piece tempPiece = allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()];
+        Sprite tempSprite = sprites[oldPosRow][oldPosColumn];
+        Sprite emptySprite = new Sprite();
         System.out.println(tempPiece);
         //System.out.println(allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()]);
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
         existingPieces.get(pieceToMove).setX(newPosColumn);
         System.out.println(existingPieces.get(pieceToMove).getX() + "------------------------------------------------------");
     
+        
+        
+        
+        
+        //TA BORT KOMMENTARERNA HÄR
+        
+        
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
         existingPieces.get(pieceToMove).setY(newPosRow);
         //System.out.println(tempPiece);
         allPieces[newPosRow][newPosColumn] = tempPiece;
+        sprites[newPosRow][newPosColumn] = tempSprite;
+        sprites[oldPosRow][oldPosColumn] = emptySprite;
         //System.out.println(tempPiece);
         System.out.println(allPieces[newPosRow][newPosColumn]);
         allPieces[oldPosRow][oldPosColumn] = null;
+        
+        
+        
+        
+        
+        
+        
+        
         //System.out.println(tempPiece);
         System.out.println("Row position: " + allPieces[newPosRow][newPosColumn].getY() + "\r\nColumn position: " + allPieces[newPosRow][newPosColumn].getX());
         
@@ -126,7 +147,5 @@ public class AI {
         //existingPieces.get(pieceToMove).setX(newPosColumn);
     }
 
-    public void update() {
-
-    }
+    public void update() {}
 }
