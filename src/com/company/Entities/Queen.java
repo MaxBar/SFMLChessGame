@@ -20,6 +20,7 @@ public class Queen extends Piece implements IEntity{
         super(x, y, isWhite);
         super.startPosX = 0;
         super.setStartPosX(startPosX);
+        super.setPointValue(9);
         sprite = new Sprite();
         movement = new Movement();
        //pair = new ArrayList<>();

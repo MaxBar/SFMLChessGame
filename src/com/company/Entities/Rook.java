@@ -21,6 +21,7 @@ public class Rook extends Piece implements IEntity {
         super(x, y, isWhite);
         super.startPosX = 120;
         super.setStartPosX(startPosX);
+        super.setPointValue(5);
         sprite = new Sprite();
         //pair = new ArrayList<>();
         movement = new Movement();
