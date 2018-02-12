@@ -1,6 +1,8 @@
 package com.company.AI;
 
+import com.company.Entities.Pawn;
 import com.company.Entities.Piece;
+import com.company.Utility.DrawLine;
 import com.company.Utility.Pair;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
@@ -18,6 +20,8 @@ public class AI {
     private int newPosColumn;
     private int oldPosRow;
     private int oldPosColumn;
+    
+    private List<DrawLine> line;
 
 
     public AI(List<Piece> existingPieces) {
@@ -98,6 +102,8 @@ public class AI {
         
         
         //TA BORT KOMMENTARERNA HÄR
+        
+        line = (Pawn) allPieces[oldPosRow][oldPosColumn].getLines();
         
         
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
