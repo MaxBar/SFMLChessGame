@@ -86,7 +86,7 @@ public class PlayState extends GameState {
             }
         }
         ai[0] = new AI(chessBoard.getWhitePieces());
-        ai[1] = new AI(chessBoard.getBlackPieces());
+        //ai[1] = new AI(chessBoard.getBlackPieces());
     }
     
     @Override
@@ -101,7 +101,7 @@ public class PlayState extends GameState {
                     switch (event.asKeyEvent().key) {
                         case SPACE:
                             ai[0].handleEvents(allpieces, pieceSprite);
-                            ai[1].handleEvents(allpieces, pieceSprite);
+                            //ai[1].handleEvents(allpieces, pieceSprite);
                            /* allpieces[0][6].checkMovement(allpieces, 0, 6);
                             allpieces[allpieces[0][6].getY()][allpieces[0][6].getX()] = allpieces[0][6];
                             allpieces[0][0] = null;*/
@@ -128,7 +128,7 @@ public class PlayState extends GameState {
     public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         window.clear(Color.BLACK);
         //lines[0].setSize(new Vector2f(500, 500));
-        line = new DrawLine(5, 19 + 45, 19 + 45, 1000, 0, Color.GREEN);
+        line = new DrawLine(5, 19 + 45, 19 + 45, 1000, Color.GREEN);
         line.rotateLine(-45);
         lines[0] = new RectangleShape(new Vector2f(5, 5));
         lines[1] = new RectangleShape(new Vector2f(3, 1000));
@@ -166,7 +166,8 @@ public class PlayState extends GameState {
                 }
             }
         }
-        line.draw(window);
+        ai[0].draw(window);
+        //ai[1].draw(window);
         /*for(int i = 0; i < lines.length; ++i) {
             window.draw(lines[i]);
         }*/

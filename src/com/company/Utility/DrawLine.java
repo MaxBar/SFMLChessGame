@@ -5,13 +5,12 @@ import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Vector2f;
 
-import java.awt.*;
 
 public class DrawLine {
     
     private RectangleShape line;
     
-    public DrawLine(float thickness, float startingPosX, float startingPosY, float endPosY, float endPosX, Color color) {
+    public DrawLine(float thickness, float startingPosX, float startingPosY, float endPosY, Color color) {
         line = new RectangleShape(new Vector2f(thickness, endPosY));
         line.setFillColor(color);
         line.setPosition(new Vector2f(startingPosX, startingPosY));

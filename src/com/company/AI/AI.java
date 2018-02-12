@@ -1,7 +1,10 @@
 package com.company.AI;
 
+import com.company.Entities.Pawn;
 import com.company.Entities.Piece;
+import com.company.Utility.DrawLine;
 import com.company.Utility.Pair;
+import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
 
@@ -18,12 +21,15 @@ public class AI {
     private int newPosColumn;
     private int oldPosRow;
     private int oldPosColumn;
+    
+    private List<List<DrawLine>> line;
 
 
     public AI(List<Piece> existingPieces) {
         this.existingPieces = existingPieces;
         possibleMovementPair = new ArrayList<>();
         random = new Random();
+        line = new ArrayList<>();
     }
 
     public void handleEvents(Piece[][] allPieces, Sprite[][] sprites) {
@@ -36,13 +42,14 @@ public class AI {
         for (Piece piece : existingPieces) {
             piece.checkMovement(allPieces, piece.getY(), piece.getX());
             possibleMovementPair.add(piece.getPair());
+            line.add(piece.getLines());
         }
 
         /*for (int i = 0; i < possibleMovementPair.size(); i++) {
             System.out.println(possibleMovementPair.get(i));
         }
         System.out.println(possibleMovementPair.size());*/
-
+        System.out.println(line);
         move(sprites, allPieces);
     }
 
@@ -99,6 +106,9 @@ public class AI {
         
         //TA BORT KOMMENTARERNA HÄR
         
+        //line = allPieces[oldPosRow][oldPosColumn].getLines();
+        //System.out.println(line);
+        
         
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
         existingPieces.get(pieceToMove).setY(newPosRow);
@@ -148,4 +158,15 @@ public class AI {
     }
 
     public void update() {}
+    
+    public void draw(RenderWindow window) {
+        for(List<DrawLine> l : line) {
+            for(DrawLine dl : l) {
+                dl.draw(window);
+            }
+        }
+        /*for(int i = 0; i < line.size(); ++i) {
+            line.get(i).draw(window);
+        }*/
+    }
 }
