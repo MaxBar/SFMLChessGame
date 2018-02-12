@@ -40,6 +40,7 @@ public class Pawn extends Piece implements IEntity {
         super(x, y, isWhite);
         super.startPosX = 300;
         super.setStartPosX(startPosX);
+        super.setPointValue(1);
         sprite = new Sprite();
         
         // Movement
