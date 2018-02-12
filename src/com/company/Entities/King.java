@@ -20,6 +20,7 @@ public class King extends Piece implements IEntity {
         super(x, y, isWhite);
         super.startPosX = 60;
         super.setStartPosX(startPosX);
+        super.setPointValue(100);
         sprite = new Sprite();
         //pair = new ArrayList<>();
         movement = new Movement();
