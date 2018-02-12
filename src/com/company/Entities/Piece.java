@@ -18,6 +18,7 @@ public abstract class Piece {
     private int endPosX;
     private int endPosY;
     private boolean isWhite;
+    private int pointValue;
     ArrayList<Pair<Integer>> pair;
 
     public IntRect getIntRect() {
@@ -85,6 +86,9 @@ public abstract class Piece {
         return y;
     }
 
+    public void setPointValue(int pointValue) { this.pointValue = pointValue; }
+
+    public int getPointValue() { return pointValue; }
 
     public abstract PieceTypes type();
     

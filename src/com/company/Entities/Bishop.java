@@ -20,6 +20,7 @@ public class Bishop extends Piece implements IEntity {
         super(x, y, isWhite);
         super.startPosX = 240;
         super.setStartPosX(startPosX);
+        super.setPointValue(3);
         sprite = new Sprite();
         //pair = new ArrayList<>();
         movement = new Movement();
