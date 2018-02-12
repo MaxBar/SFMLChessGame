@@ -97,7 +97,11 @@ public class Pawn extends Piece implements IEntity {
                 for(int row = currentRow - 1; row >= currentRow - 1; --row) {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
-                    line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, row * 128 + 64, Color.GREEN));
+                    if(row < currentRow) {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                    } else {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
+                    }
                     //pawn.lines(currentColumn, currentRow, row);
                     //line[0].setPosition(new Vector2f(currentColumn, currentRow));
                     //line[1].setPosition(new Vector2f(row, currentColumn));
@@ -106,7 +110,11 @@ public class Pawn extends Piece implements IEntity {
                 for(int row = currentRow - 1; row >= currentRow - 2; --row) {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
-                    line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, row * 128 + 64, Color.GREEN));
+                    if(row < currentRow) {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                    } else {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
+                    }
                 }
             }
         } else {
@@ -114,13 +122,21 @@ public class Pawn extends Piece implements IEntity {
                 for(int row = currentRow + 1; row <= currentRow + 1; ++row) {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
-                    line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, row * 128 + 64, Color.GREEN));
+                    if(row < currentRow) {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                    } else {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
+                    }
                 }
             } else {
                 for(int row = currentRow + 1; row <= currentRow + 2; ++row) {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
-                    line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, row * 128 + 64, Color.GREEN));
+                    if(row < currentRow) {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                    } else {
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
+                    }
                 }
             }
         }

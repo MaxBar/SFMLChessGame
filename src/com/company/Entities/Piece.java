@@ -2,6 +2,7 @@ package com.company.Entities;
 
 import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
+import com.company.Utility.DrawLine;
 import com.company.Utility.Pair;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
@@ -20,6 +21,13 @@ public abstract class Piece {
     private boolean isWhite;
     private int pointValue;
     ArrayList<Pair<Integer>> pair;
+    
+    
+    private List<DrawLine> line = new ArrayList<>();
+    
+    public List<DrawLine> getLines() {
+        return line;
+    }
 
     public IntRect getIntRect() {
 

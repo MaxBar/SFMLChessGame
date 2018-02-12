@@ -166,7 +166,8 @@ public class PlayState extends GameState {
                 }
             }
         }
-        line.draw(window);
+        ai[0].draw(window);
+        ai[1].draw(window);
         /*for(int i = 0; i < lines.length; ++i) {
             window.draw(lines[i]);
         }*/
