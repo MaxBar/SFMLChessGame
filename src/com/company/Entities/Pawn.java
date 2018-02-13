@@ -98,7 +98,7 @@ public class Pawn extends Piece implements IEntity {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
                     if(row < currentRow) {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     } else {
                         line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     }
@@ -111,7 +111,7 @@ public class Pawn extends Piece implements IEntity {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
                     if(row < currentRow) {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     } else {
                         line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     }
@@ -123,7 +123,7 @@ public class Pawn extends Piece implements IEntity {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
                     if(row < currentRow) {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     } else {
                         line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     }
@@ -133,7 +133,7 @@ public class Pawn extends Piece implements IEntity {
                     if(allPieces[row][currentColumn] != null) { break; }
                     setPairs(allPieces, tempPair, row, currentColumn);
                     if(row < currentRow) {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, row * 128 + 64, (currentRow - 1) * 128, Color.GREEN));
+                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     } else {
                         line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - 1) * 128, Color.GREEN));
                     }
