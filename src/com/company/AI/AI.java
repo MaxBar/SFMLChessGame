@@ -50,7 +50,7 @@ public class AI {
         }
         System.out.println(possibleMovementPair.size());*/
         System.out.println(line);
-        //move(sprites, allPieces);
+        move(sprites, allPieces);
     }
 
 

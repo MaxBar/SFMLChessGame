@@ -26,7 +26,7 @@ public class Pawn extends Piece implements IEntity {
     Movement movement;
     
     private List<DrawLine> line = new ArrayList<>();
-    
+
     /*public void lines(int currentColumn, int currentRow, int row) {
         line[0].setPosition(new Vector2f(currentColumn, currentRow));
         line[1].setPosition(new Vector2f(row, currentColumn));
@@ -40,6 +40,7 @@ public class Pawn extends Piece implements IEntity {
         super(x, y, isWhite);
         super.startPosX = 300;
         super.setStartPosX(startPosX);
+        super.setPointValue(1);
         sprite = new Sprite();
         
         // Movement
