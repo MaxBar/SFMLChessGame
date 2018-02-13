@@ -36,6 +36,9 @@ public class AI {
         while(!possibleMovementPair.isEmpty()) {
             possibleMovementPair.clear();
         }
+        while(!line.isEmpty()) {
+            line.clear();
+        }
         for(Piece piece : existingPieces) {
             piece.clearPair();
         }
@@ -91,7 +94,10 @@ public class AI {
         System.out.println(oldPosRow + "--------------------------------------------------");
         System.out.println(oldPosColumn + "--------------------------------------------------");
     
+        //allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()].setHasMoved(true);
         Piece tempPiece = allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()];
+        tempPiece.setHasMoved(true);
+        //allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()].setHasMoved(true);
         Sprite tempSprite = sprites[oldPosRow][oldPosColumn];
         Sprite emptySprite = new Sprite();
         System.out.println(tempPiece);
@@ -168,5 +174,12 @@ public class AI {
         /*for(int i = 0; i < line.size(); ++i) {
             line.get(i).draw(window);
         }*/
+    }
+    
+    public void clearLines() {
+        line.clear();
+        for (Piece piece : existingPieces) {
+            piece.clearLines();
+        }
     }
 }

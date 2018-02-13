@@ -31,6 +31,7 @@ public class PlayState extends GameState {
     //TEST
     private RectangleShape[] lines = new RectangleShape[2];
     private DrawLine line;
+    private int count = 0;
     
     private PlayState() throws IOException {
     
@@ -86,7 +87,7 @@ public class PlayState extends GameState {
             }
         }
         ai[0] = new AI(chessBoard.getWhitePieces());
-        //ai[1] = new AI(chessBoard.getBlackPieces());
+        ai[1] = new AI(chessBoard.getBlackPieces());
     }
     
     @Override
@@ -100,8 +101,15 @@ public class PlayState extends GameState {
                 case KEY_RELEASED:
                     switch (event.asKeyEvent().key) {
                         case SPACE:
-                            ai[0].handleEvents(allpieces, pieceSprite);
-                            //ai[1].handleEvents(allpieces, pieceSprite);
+                            if(count == 0) {
+                                ai[0].handleEvents(allpieces, pieceSprite);
+                                ai[1].handleEvents(allpieces, pieceSprite);
+                                ++count;
+                            } else if(count >= 1) {
+                                ai[0].clearLines();
+                                ai[1].clearLines();
+                                count = 0;
+                            }
                            /* allpieces[0][6].checkMovement(allpieces, 0, 6);
                             allpieces[allpieces[0][6].getY()][allpieces[0][6].getX()] = allpieces[0][6];
                             allpieces[0][0] = null;*/
@@ -167,6 +175,7 @@ public class PlayState extends GameState {
             }
         }
         ai[0].draw(window);
+        ai[1].draw(window);
         //ai[1].draw(window);
         /*for(int i = 0; i < lines.length; ++i) {
             window.draw(lines[i]);
