@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pawn extends Piece implements IEntity {
-    //private int startPosX;
+
     private Sprite sprite;
     
     // Movement
@@ -22,19 +22,8 @@ public class Pawn extends Piece implements IEntity {
     private int hasMovedMove;
     private int hasNotMovedMove;
     private ArrayList<ArrayList<Integer>> canMoveHere;
-   // private ArrayList<Pair<Integer>> pair;
     Movement movement;
-    
-    //private List<DrawLine> line = new ArrayList<>();
 
-    /*public void lines(int currentColumn, int currentRow, int row) {
-        line[0].setPosition(new Vector2f(currentColumn, currentRow));
-        line[1].setPosition(new Vector2f(row, currentColumn));
-    }
-    
-    public RectangleShape[] getLine() {
-        return line;
-    }*/
     
     public Pawn(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
@@ -49,15 +38,8 @@ public class Pawn extends Piece implements IEntity {
         hasNotMovedMove = 2;
         canMoveHere = new ArrayList<>();
         movement = new Movement();
-        
-        //pair = new ArrayList<>();
-        
-        //testArray = new ArrayList<ArrayList<>>();
-        //testArray.add(1, new ArrayList(2));
     }
 
-
-    
     @Override
     public PieceTypes type() {
         return PieceTypes.PAWN;
@@ -70,103 +52,10 @@ public class Pawn extends Piece implements IEntity {
         return sprite;
     }
     
-    /*public List<DrawLine> getLines() {
-        return super.getLines();
-    }*/
-    
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
-        
         movement.pawnCheckMovement(allPieces, super.pair, currentRow, currentColumn);
-        
-        
-        
-        
-        
-        /*while(!line.isEmpty()) {
-            line.clear();
-        }
-        ArrayList<Pair<Integer>> tempPair = pair;
-        System.out.println("Row: " + currentRow + "\r\nColumn: " + currentColumn + "*********************************************************");
-        Pawn pawn = (Pawn)allPieces[currentRow][currentColumn];
-
-        if(isWhite()) {
-        //if(allPieces[currentRow][currentColumn].isWhite()) {
-            if(super.getHasMoved()) {
-            //if(pawn.getHasMoved()) {
-                for(int row = currentRow - 1; row >= currentRow - 1; --row) {
-                    if(allPieces[row][currentColumn] != null) { break; }
-                    setPairs(allPieces, tempPair, row, currentColumn);
-                    if(row < currentRow) {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN));
-                        line.get(line.size() - 1).rotateLine(180);
-                    } else {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN));
-                    }
-                    //pawn.lines(currentColumn, currentRow, row);
-                    //line[0].setPosition(new Vector2f(currentColumn, currentRow));
-                    //line[1].setPosition(new Vector2f(row, currentColumn));
-                }
-            } else {
-                for(int row = currentRow - 1; row >= currentRow - 2; --row) {
-                    if(allPieces[row][currentColumn] != null) { break; }
-                    setPairs(allPieces, tempPair, row, currentColumn);
-                    //hasMoved = true;
-                    if(row < currentRow) {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 128, Color.GREEN));
-                        line.get(line.size() - 1).rotateLine(180);
-                    } else {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 128, Color.GREEN));
-                    }
-                }
-            }
-        } else {
-        if (super.getHasMoved()) {
-            //if(pawn.getHasMoved()) {
-            for (int row = currentRow + 1; row <= currentRow + 1; ++row) {
-                if (allPieces[row][currentColumn] != null) {
-                    break;
-                }
-                setPairs(allPieces, tempPair, row, currentColumn);
-                if (row < currentRow) {
-                    line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN));
-                } else {
-                    line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN));
-                }
-            }
-        } else {
-                for(int row = currentRow + 1; row <= currentRow + 2; ++row) {
-                    if(allPieces[row][currentColumn] != null) { break; }
-                    setPairs(allPieces, tempPair, row, currentColumn);
-                    //hasMoved = true;
-                    if(row < currentRow) {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 128, Color.GREEN));
-                    } else {
-                        line.add(new DrawLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 128, Color.GREEN));
-                    }
-                }
-            }
-        }
-        for(int i = 0; i < pair.size(); ++i) {
-            System.out.println(pair.get(i).toString());
-        }*/
     }
-    
-    /*private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int row, int column) {
-        if(allPieces[row][column] == null) {
-            Pair whereToMove = new Pair(row, column);
-            pair.add(whereToMove);
-//            this.setX(column);
-//            this.setY(row);
-        }
-    }*/
-
-    /*public boolean getHasMoved() {
-        return super.getHasMoved();
-    }
-    
-    public void setHasMoved(boolean hasMoved) { super.setHasMoved(hasMoved);}*/
 
     @Override
-    public void move() {
-    }
+    public void move() { }
 }

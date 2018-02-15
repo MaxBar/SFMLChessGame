@@ -46,19 +46,13 @@ public abstract class Piece {
     public void setHasMoved(boolean hasMoved){ this.hasMoved = hasMoved; }
 
     public IntRect getIntRect() {
-
         if (isWhite) {
-
             startPosY = 60;
-
         }
         return new IntRect(startPosX, startPosY, endPosX, endPosY);
-
     }
 
-    public Piece() {
-
-    }
+    public Piece() { }
 
     public Piece(int x, int y, boolean isWhite) {
 
@@ -73,11 +67,6 @@ public abstract class Piece {
         hasMoved = false;
     }
 
-    //public ArrayList<Pair<Integer>> getPair() {
-    //    return pair;
-    //}
-    
-    
     public List<Pair<Integer>> getPair() {
         return pair;
     }
