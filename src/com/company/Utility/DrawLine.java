@@ -29,6 +29,10 @@ public class DrawLine {
         line.rotate(degreesToRotate);
     }
     
+    public void setColor(Color color) {
+        line.setFillColor(color);
+    }
+    
     public void draw(RenderWindow window) {
         window.draw(line);
     }

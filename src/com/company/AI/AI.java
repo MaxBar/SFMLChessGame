@@ -4,6 +4,7 @@ import com.company.Entities.Pawn;
 import com.company.Entities.Piece;
 import com.company.Utility.DrawLine;
 import com.company.Utility.Pair;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
@@ -39,9 +40,10 @@ public class AI {
         while(!line.isEmpty()) {
             line.clear();
         }
-        for(Piece piece : existingPieces) {
+        existingPieces.forEach(Piece::clearPair);
+        /*for(Piece piece : existingPieces) {
             piece.clearPair();
-        }
+        }*/
         for (Piece piece : existingPieces) {
             piece.checkMovement(allPieces, piece.getY(), piece.getX());
             possibleMovementPair.add(piece.getPair());
@@ -125,6 +127,9 @@ public class AI {
         //System.out.println(tempPiece);
         System.out.println(allPieces[newPosRow][newPosColumn]);
         allPieces[oldPosRow][oldPosColumn] = null;
+        //line.add(new ArrayList<DrawLine>((DrawLine)line.get(pieceToMove).get(toMove).getLine()));
+        //line.add(new DrawLine(line.get(pieceToMove).get(toMove).getLine()));
+        //line.get(pieceToMove).get(toMove).setColor(Color.MAGENTA);
         
         
         

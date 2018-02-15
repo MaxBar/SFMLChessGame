@@ -159,8 +159,6 @@ public class PlayState extends GameState {
     
     @Override
     public void draw(GameEngine game, RenderWindow window) throws IOException {
-        
-        
         for (Sprite[] boardSpriteI : boardSprite) {
             for (Sprite boardSpriteJ : boardSpriteI) {
                 window.draw(boardSpriteJ);
