@@ -55,7 +55,7 @@ public class AI {
             System.out.println(possibleMovementPair.get(i));
         }
         System.out.println(possibleMovementPair.size());*/
-        System.out.println(line);
+        //System.out.println(line);
         move(sprites, allPieces, ai);
     }
 
@@ -105,6 +105,16 @@ public class AI {
         
         
         allPieces[newPosRow][newPosColumn] = tempPiece;
+        
+        
+        for(int i = 0; i < ai.existingPieces.size(); ++i) {
+            if(ai.existingPieces.get(i).getX() == tempPiece.getX() && ai.existingPieces.get(i).getY() == tempPiece.getY()) {
+                System.out.println("Removed from list : " + ai.existingPieces.get(i));
+                ai.existingPieces.remove(i);
+            }
+        }
+    
+        //System.out.println(ai.existingPieces);
         //Predicate<Piece> pieceToDelete = piece -> ai.
         //ai.existingPieces.stream().anyMatch()
         sprites[newPosRow][newPosColumn] = tempSprite;

@@ -462,12 +462,15 @@ public class Movement {
         }
         
         ArrayList<Pair<Integer>> tempPair = pair;
-        System.out.println("Row: " + currentRow + "\r\nColumn: " + currentColumn + "*********************************************************");
+        //System.out.println("Row: " + currentRow + "\r\nColumn: " + currentColumn + "*********************************************************");
         // White Pawn
         if (allPieces[currentRow][currentColumn].isWhite()) {
             // If White Pawn has moved we can only move one step
             if (allPieces[currentRow][currentColumn].getHasMoved()) {
                 for (int row = currentRow - 1; row >= currentRow - 1; --row) {
+                    if(currentRow == 0) {
+                        break;
+                    }
                     // Piece can't move right if it is furthest to the right on the board
                     whiteMoveRightLeft(allPieces, currentRow, currentColumn, tempPair, row);
                     
@@ -502,6 +505,9 @@ public class Movement {
             // If Black Pawn has moved we can only move one step
             if (allPieces[currentRow][currentColumn].getHasMoved()) {
                 for (int row = currentRow + 1; row <= currentRow + 1; ++row) {
+                    if(currentRow == 7) {
+                        break;
+                    }
                     moveBlackRightLeft(allPieces, currentRow, currentColumn, tempPair, row, 315, 45);
                     // If there is a piece in front of the Pawn it can't move so we break the for-loop
                     if (allPieces[row][currentColumn] != null) {
@@ -530,7 +536,6 @@ public class Movement {
     
     private void whiteMoveRightLeft(Piece[][] allPieces, int currentRow, int currentColumn, ArrayList<Pair<Integer>> tempPair, int row) {
         if (currentColumn != 7) {
-            // Check if there is a enemy piece UP RIGHT
             if (allPieces[row][currentColumn + 1] != null && allPieces[row + 1][currentColumn].isWhite() != allPieces[row][currentColumn + 1].isWhite()) {
                 setPairs(allPieces, tempPair, row, currentColumn + 1, currentRow, currentColumn);
                 allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 181, Color.RED);
@@ -550,7 +555,7 @@ public class Movement {
     }
     
     private void moveBlackRightLeft(Piece[][] allPieces, int currentRow, int currentColumn, ArrayList<Pair<Integer>> tempPair, int row, int degreesToRotate, int degreesToRotate2) {
-        if (currentColumn != 7) {
+        if (currentColumn <   7) {
             // Check if there is a enemy piece DOWN RIGHT
             if (allPieces[row][currentColumn + 1] != null && allPieces[row - 1][currentColumn].isWhite() != allPieces[row][currentColumn + 1].isWhite()) {
                 setPairs(allPieces, tempPair, row, currentColumn + 1, currentRow, currentColumn);
@@ -559,7 +564,7 @@ public class Movement {
             }
         }
         // Piece can't move left if it is furthest to the left on the board
-        if (currentColumn != 0) {
+        if (currentColumn > 0) {
             // Check if there is a enemy piece DOWN LEFT
             if (allPieces[row][currentColumn - 1] != null && allPieces[row - 1][currentColumn].isWhite() != allPieces[row][currentColumn - 1].isWhite()) {
                 setPairs(allPieces, tempPair, row, currentColumn - 1, currentRow, currentColumn);
@@ -573,10 +578,10 @@ public class Movement {
         if(allPieces[row][column] == null) {
             Pair whereToMove = new Pair(row, column);
             pair.add(whereToMove);
-        }/* else if(allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
+        }  else if(allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             Pair whereToMove = new Pair(row, column);
             pair.add(whereToMove);
-        }*/
+        }
     }
     
     private void setLinesGreen(Piece piece, int currentRow, Integer currentColumn, int endPosY, int degreesToRotate) {
