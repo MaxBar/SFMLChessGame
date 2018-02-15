@@ -14,14 +14,12 @@ public class Movement {
                 if(allPieces[row][currentColumn] != null && allPieces[row][currentColumn].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[row][currentColumn] != null && allPieces[row][currentColumn].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, row, currentColumn);
-                    allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64,  (currentRow - row) * 128, Color.RED);
-                    allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(180);
+                    setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
+                    setLinesRed(allPieces[currentRow][currentColumn], currentRow, currentColumn, (currentRow - row) * 128, 180);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, row, currentColumn);
-                    allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (currentRow - row) * 128, Color.GREEN);
-                    allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(180);
+                    setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
+                    setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, (currentRow - row) * 128, 180);
                 }
             }
         }
@@ -32,14 +30,12 @@ public class Movement {
                 if(allPieces[row][currentColumn] != null && allPieces[row][currentColumn].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[row][currentColumn] != null && allPieces[row][currentColumn].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, row, currentColumn);
-                    allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64,  (row - currentRow) * 128, Color.RED);
-                    allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(0);
+                    setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
+                    setLinesRed(allPieces[currentRow][currentColumn], currentRow, currentColumn, (row - currentRow) * 128, 0);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, row, currentColumn);
-                    allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - currentRow) * 128, Color.GREEN);
-                    allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(0);
+                    setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
+                    setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, (row - currentRow) * 128, 0);
                 }
             }
         }
@@ -50,14 +46,12 @@ public class Movement {
                 if(allPieces[currentRow][column] != null && allPieces[currentRow][column].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[currentRow][column] != null && allPieces[currentRow][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, currentRow, column);
-                    allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64,  (currentColumn - column)  * 128, Color.RED);
-                    allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(90);
+                    setPairs(allPieces, tempPair, currentRow, column, currentRow, currentColumn);
+                    setLinesRed(allPieces[currentRow][currentColumn], currentRow, currentColumn, (currentColumn - column) * 128, 90);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, currentRow, column);
-                    allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (currentColumn - column) * 128, Color.GREEN);
-                    allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(90);
+                    setPairs(allPieces, tempPair, currentRow, column, currentRow, currentColumn);
+                    setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, (currentColumn - column) * 128, 90);
                 }
             }
         }
@@ -68,25 +62,20 @@ public class Movement {
                 if(allPieces[currentRow][column] != null && allPieces[currentRow][column].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[currentRow][column] != null && allPieces[currentRow][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, currentRow, column);
+                    setPairs(allPieces, tempPair, currentRow, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (column - currentColumn) * 128, Color.RED);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(270);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, currentRow, column);
+                    setPairs(allPieces, tempPair, currentRow, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (column - currentColumn) * 128, Color.GREEN);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(270);
                 }
             }
         }
-    
-    
-        /*for(int i = 0; i < pair.size(); ++i) {
-            System.out.println("ROOK MOVEMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println(pair.get(i).toString());
-        }*/
     }
-
+    
+    
     public void queenCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
         rookCheckMovement(allPieces, pair, currentRow, currentColumn);
         bishopCheckMovement(allPieces, pair, currentRow, currentColumn);
@@ -100,23 +89,21 @@ public class Movement {
         // UP
         if(currentRow > 0 && allPieces[currentRow - 1][currentColumn] != null && allPieces[currentRow - 1][currentColumn].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             row = currentRow;
-            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
-            allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(180);
+            setLinesRed(allPieces[currentRow][currentColumn], currentRow, currentColumn, 128, 180);
         } else if(currentRow > 0 && allPieces[currentRow - 1][currentColumn] == null){
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             row = currentRow;
-            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
-            allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(180);
+            setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, 128, 180);
         }
 
         // UP LEFT
         if(currentRow > 0 && currentColumn > 0 && allPieces[currentRow - 1][currentColumn - 1] != null && allPieces[currentRow - 1][currentColumn - 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             --column;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
@@ -124,7 +111,7 @@ public class Movement {
         } else if(currentRow > 0 && currentColumn > 0 && allPieces[currentRow - 1][currentColumn - 1] == null) {
             --column;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
@@ -135,7 +122,7 @@ public class Movement {
         if(currentRow > 0 && currentColumn < 7 && allPieces[currentRow - 1][currentColumn + 1] != null && allPieces[currentRow - 1][currentColumn + 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             ++column;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
@@ -143,7 +130,7 @@ public class Movement {
         } else if(currentRow > 0 && currentColumn < 7 && allPieces[currentRow - 1][currentColumn + 1] == null) {
             ++column;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
@@ -153,24 +140,22 @@ public class Movement {
         //DOWN
         if(currentRow < 7 && allPieces[currentRow + 1][currentColumn] != null && allPieces[currentRow + 1][currentColumn].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             row = currentRow;
-            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
-            allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(0);
+            setLinesRed(allPieces[currentRow][currentColumn], currentRow, currentColumn, 128, 0);
         }
         else if (currentRow < 7 && allPieces[currentRow + 1][currentColumn] == null) {
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             row = currentRow;
-            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
-            allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(0);
+            setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, 128, 0);
         }
 
         // DOWN RIGHT
         if(currentRow < 7 && currentColumn < 7 && allPieces[currentRow + 1][currentColumn + 1] != null && allPieces[currentRow + 1][currentColumn + 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             ++column;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
@@ -179,7 +164,7 @@ public class Movement {
         else if(currentRow < 7 && currentColumn < 7 && allPieces[currentRow + 1][currentColumn + 1] == null) {
             ++column;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
@@ -190,7 +175,7 @@ public class Movement {
         if(currentRow < 7 && currentColumn > 0 && allPieces[currentRow + 1][currentColumn - 1] != null && allPieces[currentRow + 1][currentColumn - 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             --column;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
@@ -199,7 +184,7 @@ public class Movement {
         else if(currentRow < 7 && currentColumn > 0 && allPieces[currentRow + 1][currentColumn - 1] == null) {
             --column;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
@@ -209,38 +194,29 @@ public class Movement {
         // LEFT
         if (currentColumn > 0 && allPieces[currentRow][currentColumn - 1] != null && allPieces[currentRow][currentColumn - 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             --column;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
-            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
-            allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(90);
+            setLinesRed(allPieces[currentRow][currentColumn], currentRow, currentColumn, 128, 90);
         } else if (currentColumn > 0 && allPieces[currentRow][currentColumn - 1] == null) {
             --column;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
-            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
-            allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(90);
+            setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, 128, 90);
         }
 
         // RIGHT
         if(currentColumn < 7 && allPieces[currentRow][currentColumn + 1] != null && currentColumn < 7 && allPieces[currentRow][currentColumn + 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             ++column;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.RED);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(270);
         }
         else if (currentColumn < 7 && allPieces[currentRow][currentColumn + 1] == null) {
             ++column;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(270);
         }
-
-        /*for(int i = 0; i < pair.size(); ++i) {
-            if(pair.size() > 0) {
-                System.out.println(pair.get(i).toString());
-            }
-            System.out.println(pair.size());
-        }*/
     }
 
     public void bishopCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
@@ -252,12 +228,12 @@ public class Movement {
                 if(allPieces[row][column] != null && allPieces[row][column].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[row][column] != null && allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64,  (currentRow - row) * 181, Color.RED);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(135);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (currentRow - row) * 181, Color.GREEN);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(135);
                 }
@@ -270,12 +246,12 @@ public class Movement {
                 if(allPieces[row][column] != null && allPieces[row][column].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[row][column] != null && allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64,  (currentRow - row) * 181, Color.RED);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(225);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (currentRow - row) * 181, Color.GREEN);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(225);
                 }
@@ -288,12 +264,12 @@ public class Movement {
                 if(allPieces[row][column] != null && allPieces[row][column].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[row][column] != null && allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - currentRow) * 181, Color.RED);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(45);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - currentRow) * 181, Color.GREEN);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(45);
                 }
@@ -306,12 +282,12 @@ public class Movement {
                 if(allPieces[row][column] != null && allPieces[row][column].isWhite() == allPieces[currentRow][currentColumn].isWhite()) {
                     break;
                 } else if(allPieces[row][column] != null && allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64,  (row - currentRow) * 181, Color.RED);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(315);
                     break;
                 } else {
-                    setPairs(allPieces, tempPair, row, column);
+                    setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
                     allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - currentRow) * 181, Color.GREEN);
                     allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(315);
                 }
@@ -329,7 +305,7 @@ public class Movement {
         if(currentRow > 1 && currentColumn > 0 && allPieces[currentRow - 2][currentColumn - 1] != null && allPieces[currentRow - 2][currentColumn - 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             --column;
             row -= 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
@@ -338,7 +314,7 @@ public class Movement {
         else if(currentRow > 1 && currentColumn > 0 && allPieces[currentRow - 2][currentColumn - 1] == null) {
             --column;
             row -= 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
@@ -349,7 +325,7 @@ public class Movement {
         if(currentRow > 1 && currentColumn < 7 && allPieces[currentRow - 2][currentColumn + 1] != null && allPieces[currentRow - 2][currentColumn + 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             ++column;
             row -= 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
@@ -358,7 +334,7 @@ public class Movement {
         else if(currentRow > 1 && currentColumn < 7 && allPieces[currentRow - 2][currentColumn + 1] == null) {
             ++column;
             row -= 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
@@ -369,7 +345,7 @@ public class Movement {
         if(currentColumn < 6 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn + 2] != null && allPieces[currentRow - 1][currentColumn + 2].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             column += 2;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
@@ -378,7 +354,7 @@ public class Movement {
         else if(currentColumn < 6 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn + 2] == null) {
             column += 2;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
@@ -389,7 +365,7 @@ public class Movement {
         if (currentColumn < 6 && currentRow < 7 && allPieces[currentRow + 1][currentColumn + 2] != null && allPieces[currentRow + 1][currentColumn + 2].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             column += 2;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
@@ -397,7 +373,7 @@ public class Movement {
         } else if (currentColumn < 6 && currentRow < 7 && allPieces[currentRow + 1][currentColumn + 2] == null) {
             column += 2;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
@@ -408,7 +384,7 @@ public class Movement {
         if (currentRow < 6 && currentColumn < 7 && allPieces[currentRow + 2][currentColumn + 1] != null && allPieces[currentRow + 2][currentColumn + 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             ++column;
             row += 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
@@ -416,7 +392,7 @@ public class Movement {
         } else if (currentRow < 6 && currentColumn < 7 && allPieces[currentRow + 2][currentColumn + 1] == null) {
             ++column;
             row += 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
@@ -427,7 +403,7 @@ public class Movement {
         if(currentRow < 6 && currentColumn > 0 && allPieces[currentRow + 2][currentColumn - 1] != null && allPieces[currentRow + 2][currentColumn - 1].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             --column;
             row += 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
@@ -436,7 +412,7 @@ public class Movement {
         else if(currentRow < 6 && currentColumn > 0 && allPieces[currentRow + 2][currentColumn - 1] == null) {
             --column;
             row += 2;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
@@ -447,7 +423,7 @@ public class Movement {
         if(currentColumn > 1 && currentRow < 7 && allPieces[currentRow + 1][currentColumn - 2] != null && allPieces[currentRow + 1][currentColumn - 2].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             column -= 2;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
@@ -456,7 +432,7 @@ public class Movement {
         else if(currentColumn > 1 && currentRow < 7 && allPieces[currentRow + 1][currentColumn - 2] == null) {
             column -= 2;
             ++row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
@@ -467,14 +443,14 @@ public class Movement {
         if(currentColumn > 1 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn - 2] != null && allPieces[currentRow - 1][currentColumn - 2].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             column -= 2;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(115);
         }
         else if(currentColumn > 1 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn - 2] == null) {
             column -= 2;
             --row;
-            setPairs(allPieces, tempPair, row, column);
+            setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.GREEN);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(115);
         }
@@ -493,30 +469,28 @@ public class Movement {
             if (allPieces[currentRow][currentColumn].getHasMoved()) {
                 for (int row = currentRow - 1; row >= currentRow - 1; --row) {
                     // Piece can't move right if it is furthest to the right on the board
-                    whiteMoveLeftRight(allPieces, currentRow, currentColumn, tempPair, row);
+                    whiteMoveRightLeft(allPieces, currentRow, currentColumn, tempPair, row);
                     
                     // If there is a piece in front of the Pawn it can't move so we break the for-loop
                     if (allPieces[row][currentColumn] != null) {
                         break;
                     } else {
-                        setPairs(allPieces, tempPair, row, currentColumn);
-                        allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
-                        allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(180);
+                        setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
+                        setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, 128, 180);
                     }
                 }
             } else {
                 for (int row = currentRow - 1; row >= currentRow - 2; --row) {
                     // Piece can't move right if it is furthest to the right on the board
                     if(row == currentRow - 1) {
-                        whiteMoveLeftRight(allPieces, currentRow, currentColumn, tempPair, row);
+                        whiteMoveRightLeft(allPieces, currentRow, currentColumn, tempPair, row);
                     }
                     // If there is a piece in front of the Pawn it can't move so we break the for-loop
                     if (allPieces[row][currentColumn] != null) {
                         break;
                     } else {
-                        setPairs(allPieces, tempPair, row, currentColumn);
-                        allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (currentRow - row) * 128, Color.GREEN);
-                        allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(180);
+                        setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
+                        setLinesGreen(allPieces[currentRow][currentColumn], currentRow, currentColumn, (currentRow - row) * 128, 180);
                     }
                 }
             }
@@ -528,25 +502,25 @@ public class Movement {
             // If Black Pawn has moved we can only move one step
             if (allPieces[currentRow][currentColumn].getHasMoved()) {
                 for (int row = currentRow + 1; row <= currentRow + 1; ++row) {
-                    MoveBlackRightLeft(allPieces, currentRow, currentColumn, tempPair, row, 315, 45);
+                    moveBlackRightLeft(allPieces, currentRow, currentColumn, tempPair, row, 315, 45);
                     // If there is a piece in front of the Pawn it can't move so we break the for-loop
                     if (allPieces[row][currentColumn] != null) {
                         break;
                     } else {
-                        setPairs(allPieces, tempPair, row, currentColumn);
+                        setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
                         allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 128, Color.GREEN);
                     }
                 }
             } else {
                 for (int row = currentRow + 1; row <= currentRow + 2; ++row) {
                     if(row == currentRow + 1) {
-                        MoveBlackRightLeft(allPieces, currentRow, currentColumn, tempPair, row, 225, 135);
+                        moveBlackRightLeft(allPieces, currentRow, currentColumn, tempPair, row, 225, 135);
                     }
                     // If there is a piece in front of the Pawn it can't move so we break the for-loop
                     if (allPieces[row][currentColumn] != null) {
                         break;
                     } else {
-                        setPairs(allPieces, tempPair, row, currentColumn);
+                        setPairs(allPieces, tempPair, row, currentColumn, currentRow, currentColumn);
                         allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, (row - currentRow) * 128, Color.GREEN);
                     }
                 }
@@ -554,11 +528,11 @@ public class Movement {
         }
     }
     
-    private void whiteMoveLeftRight(Piece[][] allPieces, int currentRow, int currentColumn, ArrayList<Pair<Integer>> tempPair, int row) {
+    private void whiteMoveRightLeft(Piece[][] allPieces, int currentRow, int currentColumn, ArrayList<Pair<Integer>> tempPair, int row) {
         if (currentColumn != 7) {
             // Check if there is a enemy piece UP RIGHT
             if (allPieces[row][currentColumn + 1] != null && allPieces[row + 1][currentColumn].isWhite() != allPieces[row][currentColumn + 1].isWhite()) {
-                setPairs(allPieces, tempPair, row, currentColumn + 1);
+                setPairs(allPieces, tempPair, row, currentColumn + 1, currentRow, currentColumn);
                 allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 181, Color.RED);
                 allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(225);
             }
@@ -568,18 +542,18 @@ public class Movement {
         if (currentColumn != 0) {
             // Check if there is a enemy piece UP LEFT
             if (allPieces[row][currentColumn - 1] != null && allPieces[row + 1][currentColumn].isWhite() != allPieces[row][currentColumn - 1].isWhite()) {
-                setPairs(allPieces, tempPair, row, currentColumn - 1);
+                setPairs(allPieces, tempPair, row, currentColumn - 1, currentRow, currentColumn);
                 allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 181, Color.RED);
                 allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(135);
             }
         }
     }
     
-    private void MoveBlackRightLeft(Piece[][] allPieces, int currentRow, int currentColumn, ArrayList<Pair<Integer>> tempPair, int row, int degreesToRotate, int degreesToRotate2) {
+    private void moveBlackRightLeft(Piece[][] allPieces, int currentRow, int currentColumn, ArrayList<Pair<Integer>> tempPair, int row, int degreesToRotate, int degreesToRotate2) {
         if (currentColumn != 7) {
             // Check if there is a enemy piece DOWN RIGHT
             if (allPieces[row][currentColumn + 1] != null && allPieces[row - 1][currentColumn].isWhite() != allPieces[row][currentColumn + 1].isWhite()) {
-                setPairs(allPieces, tempPair, row, currentColumn + 1);
+                setPairs(allPieces, tempPair, row, currentColumn + 1, currentRow, currentColumn);
                 allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 181, Color.RED);
                 allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(degreesToRotate);
             }
@@ -588,20 +562,30 @@ public class Movement {
         if (currentColumn != 0) {
             // Check if there is a enemy piece DOWN LEFT
             if (allPieces[row][currentColumn - 1] != null && allPieces[row - 1][currentColumn].isWhite() != allPieces[row][currentColumn - 1].isWhite()) {
-                setPairs(allPieces, tempPair, row, currentColumn - 1);
+                setPairs(allPieces, tempPair, row, currentColumn - 1, currentRow, currentColumn);
                 allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 181, Color.RED);
                 allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(degreesToRotate2);
             }
         }
     }
     
-    private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int row, int column/*, int currentRow, int currentColumn*/) {
+    private void setPairs(Piece[][] allPieces,  ArrayList<Pair<Integer>> pair, int row, int column, int currentRow, int currentColumn) {
         if(allPieces[row][column] == null) {
             Pair whereToMove = new Pair(row, column);
             pair.add(whereToMove);
-        } /*else if(allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
+        }/* else if(allPieces[row][column].isWhite() != allPieces[currentRow][currentColumn].isWhite()) {
             Pair whereToMove = new Pair(row, column);
             pair.add(whereToMove);
         }*/
+    }
+    
+    private void setLinesGreen(Piece piece, int currentRow, Integer currentColumn, int endPosY, int degreesToRotate) {
+        piece.setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, endPosY, Color.GREEN);
+        piece.getLines().get(piece.getLines().size() - 1).rotateLine(degreesToRotate);
+    }
+    
+    private void setLinesRed(Piece piece, int currentRow, Integer currentColumn, int endPosY, int degreesToRotate) {
+        piece.setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, endPosY, Color.RED);
+        piece.getLines().get(piece.getLines().size() - 1).rotateLine(degreesToRotate);
     }
 }

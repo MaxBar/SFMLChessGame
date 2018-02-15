@@ -12,6 +12,7 @@ import org.jsfml.system.Vector2f;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 public class AI {
 
@@ -33,7 +34,7 @@ public class AI {
         line = new ArrayList<>();
     }
 
-    public void handleEvents(Piece[][] allPieces, Sprite[][] sprites) {
+    public void handleEvents(Piece[][] allPieces, Sprite[][] sprites, AI ai) {
         while(!possibleMovementPair.isEmpty()) {
             possibleMovementPair.clear();
         }
@@ -55,12 +56,12 @@ public class AI {
         }
         System.out.println(possibleMovementPair.size());*/
         System.out.println(line);
-        move(sprites, allPieces);
+        move(sprites, allPieces, ai);
     }
 
 
 
-    private void move(Sprite[][] sprites, Piece[][] allPieces) {
+    private void move(Sprite[][] sprites, Piece[][] allPieces, AI ai) {
         int min = 0;
         int max = possibleMovementPair.size() - 1;
         int pieceToMove;
@@ -68,18 +69,10 @@ public class AI {
 
         do {
             pieceToMove = random.nextInt((max - min) + 1) + min;
-            System.out.println(pieceToMove);
 
         } while (possibleMovementPair.get(pieceToMove).size() <= 0);
 
         max = possibleMovementPair.get(pieceToMove).size() - 1;
-    
-    
-        System.out.println("max value is " + max);
-        System.out.println("pieceToMove's size is " + pieceToMove);
-        System.out.println(possibleMovementPair.get(pieceToMove));
-        System.out.println("possibleMovementPair's size is " + possibleMovementPair.get(pieceToMove).size());
-        
         
         toMove = random.nextInt((max - min) + 1) + min;
         newPosRow = possibleMovementPair.get(pieceToMove).get(toMove).getRow();
@@ -93,79 +86,30 @@ public class AI {
         
         oldPosRow = existingPieces.get(pieceToMove).getY();
         oldPosColumn = existingPieces.get(pieceToMove).getX();
-        System.out.println(oldPosRow + "--------------------------------------------------");
-        System.out.println(oldPosColumn + "--------------------------------------------------");
-    
-        //allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()].setHasMoved(true);
+        
         Piece tempPiece = allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()];
         tempPiece.setHasMoved(true);
-        //allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()].setHasMoved(true);
+        
         Sprite tempSprite = sprites[oldPosRow][oldPosColumn];
         Sprite emptySprite = new Sprite();
-        System.out.println(tempPiece);
-        //System.out.println(allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()]);
+        
+        
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
         existingPieces.get(pieceToMove).setX(newPosColumn);
-        System.out.println(existingPieces.get(pieceToMove).getX() + "------------------------------------------------------");
-    
-        
-        
-        
-        
-        //TA BORT KOMMENTARERNA HÄR
-        
-        //line = allPieces[oldPosRow][oldPosColumn].getLines();
-        //System.out.println(line);
         
         
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
         existingPieces.get(pieceToMove).setY(newPosRow);
-        //System.out.println(tempPiece);
+        
+        
+        
+        
         allPieces[newPosRow][newPosColumn] = tempPiece;
+        //Predicate<Piece> pieceToDelete = piece -> ai.
+        //ai.existingPieces.stream().anyMatch()
         sprites[newPosRow][newPosColumn] = tempSprite;
         sprites[oldPosRow][oldPosColumn] = emptySprite;
-        //System.out.println(tempPiece);
-        System.out.println(allPieces[newPosRow][newPosColumn]);
         allPieces[oldPosRow][oldPosColumn] = null;
-        //line.add(new ArrayList<DrawLine>((DrawLine)line.get(pieceToMove).get(toMove).getLine()));
-        //line.add(new DrawLine(line.get(pieceToMove).get(toMove).getLine()));
-        //line.get(pieceToMove).get(toMove).setColor(Color.MAGENTA);
-        
-        
-        
-        
-        
-        
-        
-        
-        //System.out.println(tempPiece);
-        System.out.println("Row position: " + allPieces[newPosRow][newPosColumn].getY() + "\r\nColumn position: " + allPieces[newPosRow][newPosColumn].getX());
-        
-        //allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()] = allPieces[oldPosRow][oldPosColumn];
-        
-        // Sätter brädets array med spelpjäser till att den nya positionen innehåller pjäsen som rörde sig
-        ////////////////////7allPieces[newPosRow][newPosColumn] = allPieces[existingPieces.get(pieceToMove).getX()][existingPieces.get(pieceToMove).getY()];
-        
-        
-        //sprites[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()].move(vector2f);
-        
-        // Sätter gamla positionen till null för att indikera att den inte innehåller någon pjäs
-        //allPieces[existingPieces.get(pieceToMove).getY()][existingPieces.get(pieceToMove).getX()] = null;
-        
-        for(int i = 0; i < allPieces.length; ++i) {
-            for(int j = 0; j < allPieces[i].length; ++j) {
-                if(j % 8 == 0) {
-                    System.out.println();
-                }
-                System.out.println(allPieces[i][j]);
-            }
-        }
-        System.out.println("Vector position x: " + vector2f.x + "\r\nVector position y: " + vector2f.y);
-
-        //existingPieces.get(pieceToMove).setX(newPosColumn);
-        //existingPieces.get(pieceToMove).setY(newPosRow);
-        //existingPieces.get(pieceToMove).setY(newPosRow);
-        //existingPieces.get(pieceToMove).setX(newPosColumn);
     }
 
     public void update() {}
@@ -176,9 +120,6 @@ public class AI {
                 dl.draw(window);
             }
         }
-        /*for(int i = 0; i < line.size(); ++i) {
-            line.get(i).draw(window);
-        }*/
     }
     
     public void clearLines() {
