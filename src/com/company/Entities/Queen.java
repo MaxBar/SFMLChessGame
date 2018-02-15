@@ -9,12 +9,10 @@ import org.jsfml.graphics.Sprite;
 import java.util.ArrayList;
 
 public class Queen extends Piece implements IEntity{
-    //private int startPosX;
-    Sprite sprite;
 
-    //Movement
-    //private ArrayList<Pair<Integer>> pair;
+    Sprite sprite;
     private Movement movement;
+
 
     public Queen(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
@@ -23,12 +21,8 @@ public class Queen extends Piece implements IEntity{
         super.setPointValue(9);
         sprite = new Sprite();
         movement = new Movement();
-       //pair = new ArrayList<>();
     }
 
-
-
-    
     @Override
     public PieceTypes type() {
         return PieceTypes.QUEEN;
@@ -37,7 +31,6 @@ public class Queen extends Piece implements IEntity{
     @Override
     public Sprite getSprite(TextureManager textureManager, String filePath) {
         sprite.setTexture(textureManager.getTexture(filePath));
-        //return textureManager.getSprite(getIntRect(), filePath);
         sprite.setTextureRect(getIntRect());
         return sprite;
     }
@@ -48,7 +41,5 @@ public class Queen extends Piece implements IEntity{
     }
     
     @Override
-    public void move() {
-    
-    }
+    public void move() { }
 }

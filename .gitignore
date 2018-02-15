@@ -1,5 +1,5 @@
 .idea/
-.mdj
+*.mdj
 
 # Compiled class file
 *.class
