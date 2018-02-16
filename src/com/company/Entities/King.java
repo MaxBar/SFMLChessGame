@@ -12,6 +12,7 @@ public class King extends Piece implements IEntity {
 
     Sprite sprite;
     private Movement movement;
+    private boolean isChecked;
 
 
     public King(int x, int y, boolean isWhite) {
@@ -20,8 +21,8 @@ public class King extends Piece implements IEntity {
         super.setStartPosX(startPosX);
         super.setPointValue(100);
         sprite = new Sprite();
-        //pair = new ArrayList<>();
         movement = new Movement();
+        isChecked = false;
     }
 
     @Override
@@ -39,6 +40,14 @@ public class King extends Piece implements IEntity {
 
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
         movement.kingCheckMovement(allPieces, super.pair, currentRow, currentColumn);
+    }
+    
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
+    
+    public boolean getIsChecked() {
+        return isChecked;
     }
 
     @Override
