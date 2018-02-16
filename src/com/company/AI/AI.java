@@ -1,18 +1,26 @@
 package com.company.AI;
 
 import com.company.Engine.GameEngine;
+import com.company.Engine.GameState;
 import com.company.Entities.King;
+import com.company.Entities.Pawn;
 import com.company.Entities.Piece;
 import com.company.Enums.PieceTypes;
 import com.company.GameStates.MenuState;
+import com.company.GameStates.PlayState;
 import com.company.Utility.DrawLine;
 import com.company.Utility.Pair;
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static java.awt.SystemColor.window;
 
 public class AI {
 
@@ -43,7 +51,15 @@ public class AI {
 
     public void handleEvents(Piece[][] allPieces, Sprite[][] sprites, AI ai, GameEngine game, RenderWindow window) throws IOException {
         
+        
+        //existingPieces.forEach(Piece::clearPair);
+        
         switch(count) {
+            /*case 0:
+                clearMoveLine();
+                checkForCheck(allPieces, ai);
+                ++count;
+                break;*/
             case 0:
                 clearMoveLine();
                 while(!possibleMovementPair.isEmpty()) {
@@ -58,11 +74,13 @@ public class AI {
                     possibleMovementPair.add(piece.getPair());
                     line.add(piece.getLines());
                 }
+                //checkForCheck(allPieces, ai);
                 ++count;
                 break;
             case 1:
                 clearLines();
                 checkForCheck(allPieces, sprites, ai, game, window);
+                //drawMoveLine(allPieces);
                 ++count;
                 break;
             case 2:
@@ -70,6 +88,18 @@ public class AI {
                 break;
                 
         }
+        /*for (Piece piece : existingPieces) {
+            piece.checkMovement(allPieces, piece.getY(), piece.getX());
+            possibleMovementPair.add(piece.getPair());
+            line.add(piece.getLines());
+        }*/
+
+        /*for (int i = 0; i < possibleMovementPair.size(); i++) {
+            System.out.println(possibleMovementPair.get(i));
+        }
+        System.out.println(possibleMovementPair.size());*/
+        //System.out.println(line);
+        //move(sprites, allPieces, ai);
     }
     
     private void checkForCheck(Piece[][] allPieces, Sprite[][] sprites, AI ai, GameEngine game, RenderWindow window) throws IOException {
@@ -87,8 +117,6 @@ public class AI {
             move(sprites, allPieces, ai);
         }
     }
-    
-    // Spaghetti code commences
     
     private void moveKing(Piece[][] allPieces, Sprite[][] sprites, ArrayList<List<Pair<Integer>>> pairList, King kingPiece, AI ai, GameEngine game, RenderWindow window) throws IOException {
         // Checking kings list
@@ -178,6 +206,7 @@ public class AI {
         newPosRow = possibleMovementPair.get(pieceToMove).get(toMove).getRow();
         newPosColumn = possibleMovementPair.get(pieceToMove).get(toMove).getColumn();
 
+
         // Sätter en vector till nya positionen på brädet
         Vector2f vector2f = new Vector2f(newPosColumn * 128 + 19, newPosRow * 128 + 19);
         // Flyttar spriten till den nya positionen via vectorns x och y värden
@@ -192,13 +221,19 @@ public class AI {
         Sprite tempSprite = sprites[oldPosRow][oldPosColumn];
         Sprite emptySprite = new Sprite();
         
+        
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
         existingPieces.get(pieceToMove).setX(newPosColumn);
+        
         
         // Sätter pjäsen som rörde sig till nytt y-värde via newPosColumn
         existingPieces.get(pieceToMove).setY(newPosRow);
         
+        
+        
+        
         allPieces[newPosRow][newPosColumn] = tempPiece;
+        
         
         for(int i = 0; i < ai.existingPieces.size(); ++i) {
             if(ai.existingPieces.get(i).getX() == tempPiece.getX() && ai.existingPieces.get(i).getY() == tempPiece.getY()) {
@@ -206,10 +241,54 @@ public class AI {
                 ai.existingPieces.remove(i);
             }
         }
+        // För att sätta i schack
+        /*
+        Efter man har flyttat på pjäsen, så skall den kolla allas sina nya possible movemenets
+        Den ska kolla om varje != null är Piecetype.KING och om det är det så ska setIsChecked sättas till true
+         */
         
+        
+        
+        
+    
+        //System.out.println(ai.existingPieces);
+        //Predicate<Piece> pieceToDelete = piece -> ai.
+        //ai.existingPieces.stream().anyMatch()
         sprites[newPosRow][newPosColumn] = tempSprite;
         sprites[oldPosRow][oldPosColumn] = emptySprite;
         allPieces[oldPosRow][oldPosColumn] = null;
+        
+        // Set King to checked if checked
+        /*List<List<Pair<Integer>>> tempPossibleMovementPair = new ArrayList<>();
+        existingPieces.get(pieceToMove).checkMovement(allPieces, existingPieces.get(pieceToMove).getY(), existingPieces.get(pieceToMove).getX());
+        tempPossibleMovementPair.add(existingPieces.get(pieceToMove).getPair());
+        for(List<Pair<Integer>> pair : tempPossibleMovementPair) {
+            for(Pair<Integer> p : pair) {
+                System.out.println("Possible movement: X " + p.getColumn() + " | Y: " + p.getRow());
+                if(allPieces[p.getRow()][p.getColumn()] != null) {
+                    if (allPieces[p.getRow()][p.getColumn()].type() == PieceTypes.KING) {
+                        System.out.println("Setting king to checked");
+                        King king = (King) allPieces[p.getRow()][p.getColumn()];
+                        king.setIsChecked(true);
+                    }
+                }
+            }
+        }*/
+        
+        /*for(int i = 0; i < tempPossibleMovementPair.size(); ++i) {
+            for(int j = 0; j < tempPossibleMovementPair.get(i).size(); ++j) {
+                if(allPieces[tempPossibleMovementPair.get(i).get(j).getColumn()][tempPossibleMovementPair.get(i).get(j).getRow()].type() == PieceTypes.KING) {
+                    King king = (King) allPieces[tempPossibleMovementPair.get(i).get(j).getColumn()][tempPossibleMovementPair.get(i).get(j).getRow()];
+                    king.setIsChecked(true);
+                    System.out.println("Seeting king to checked");
+                }
+            }
+        }*/
+            
+            //allPieces[newPosRow][newPosColumn]
+            //existingPieces.get(pieceToMove).setX(newPosColumn);
+            //piece.checkMovement(allPieces, piece.getY(), piece.getX());
+            //possibleMovementPair.add(piece.getPair());
     }
 
     public void update() {}
@@ -235,4 +314,63 @@ public class AI {
     private void clearMoveLine() {
         moveLine = null;
     }
+    
+    /*private void drawMoveLine(Piece[][] allPieces) {
+        Piece tempPiece = allPieces[existingPieces.get(classPieceToMove).getY()][existingPieces.get(classPieceToMove).getX()];
+        
+        //allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(155);
+        
+        moveLine = allPieces[existingPieces.get(classPieceToMove).getY()][existingPieces.get(classPieceToMove).getX()].getLines().get(classToMove);
+        //moveLine = tempPiece.getLines().get(allPieces[existingPieces.get(classPieceToMove).getY()][existingPieces.get(classPieceToMove).getX()].getLines().get(classToMove).getLine());
+    }*/
+    
+    /*private void checkForCheck(Piece[][] allPieces, AI ai) {
+        King kingPiece;
+        if(existingPieces.stream().filter(p -> p.type() == PieceTypes.KING).findFirst().isPresent()) {
+            kingPiece = (King) existingPieces.stream().filter(p -> p.type() == PieceTypes.KING).findFirst().get();
+            if (kingPiece.getIsChecked()) {
+                    System.out.println("King is checked, checking movements");
+                    kingPiece.checkMovement(allPieces, kingPiece.getY(), kingPiece.getX());
+                    System.out.println("King movements checked, sending to move King");
+                    ifCheckedMove(kingPiece, ai);
+                    count = 0;
+                } else {
+                    System.out.println("King is not checked");
+                }
+        }
+        
+        /*if(tempKingPiece.isPresent()) {
+            kingPiece = tempKingPiece.get();
+        }
+        
+        
+    }*/
+    
+    /*private void ifCheckedMove(King king, AI ai) {
+        boolean canNotMove = false;
+        do {
+            int whereToMoveRow;
+            int whereToMoveColumn;
+            List<Pair<Integer>> possibleMovements = king.getPair();
+            for(Pair kingPair : possibleMovements) {
+                canNotMove = false;
+                if(kingPair.getRow() != ai.possibleMovementPair.stream()
+                        .flatMap(Collection::stream)
+                        .filter(p -> p.getRow() == kingPair.getRow()) &&
+                        kingPair.getColumn() != ai.possibleMovementPair.stream()
+                        .flatMap(Collection::stream)
+                        .filter(p -> p.getColumn() == kingPair.getColumn())) {
+                    System.out.println("Moving King to position:\nX: " + kingPair.getColumn() + "\nY: " + kingPair.getRow());
+                    
+                    
+                } else {
+                    canNotMove = true;
+                }
+            }
+        } while (king.getIsChecked() || canNotMove);
+        
+        if(canNotMove) {
+            System.out.println(this + "loses");
+        }
+    }*/
 }
