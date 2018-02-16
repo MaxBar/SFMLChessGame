@@ -39,6 +39,7 @@ public class King extends Piece implements IEntity {
     }
 
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
+        super.pair.clear();
         movement.kingCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
     

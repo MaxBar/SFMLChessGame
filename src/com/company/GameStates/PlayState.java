@@ -102,10 +102,10 @@ public class PlayState extends GameState {
                     switch (event.asKeyEvent().key) {
                         case SPACE:
                             if(count == 0) {
-                                ai[0].handleEvents(allpieces, pieceSprite, ai[1]);
+                                ai[0].handleEvents(allpieces, pieceSprite, ai[1], game, window);
                                 ++count;
                             } else if(count >= 1) {
-                                ai[1].handleEvents(allpieces, pieceSprite, ai[0]);
+                                ai[1].handleEvents(allpieces, pieceSprite, ai[0], game, window);
                                 count = 0;
                             }
                             

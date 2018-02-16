@@ -320,10 +320,10 @@ public class Movement {
             --column;
             row -= 2;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
+            isKingChecked(allPieces, row, column);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
-            isKingChecked(allPieces, row, column);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(155);
         }
         else if(currentRow > 1 && currentColumn > 0 && allPieces[currentRow - 2][currentColumn - 1] == null) {
@@ -341,10 +341,10 @@ public class Movement {
             ++column;
             row -= 2;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
+            isKingChecked(allPieces, row, column);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
-            isKingChecked(allPieces, row, column);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(205);
         }
         else if(currentRow > 1 && currentColumn < 7 && allPieces[currentRow - 2][currentColumn + 1] == null) {
@@ -362,10 +362,10 @@ public class Movement {
             column += 2;
             --row;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
+            isKingChecked(allPieces, row, column);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
-            isKingChecked(allPieces, row, column);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(245);
         }
         else if(currentColumn < 6 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn + 2] == null) {
@@ -383,10 +383,10 @@ public class Movement {
             column += 2;
             ++row;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
+            isKingChecked(allPieces, row, column);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
-            isKingChecked(allPieces, row, column);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(295);
         } else if (currentColumn < 6 && currentRow < 7 && allPieces[currentRow + 1][currentColumn + 2] == null) {
             column += 2;
@@ -403,10 +403,10 @@ public class Movement {
             ++column;
             row += 2;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
+            isKingChecked(allPieces, row, column);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
-            isKingChecked(allPieces, row, column);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(335);
         } else if (currentRow < 6 && currentColumn < 7 && allPieces[currentRow + 2][currentColumn + 1] == null) {
             ++column;
@@ -423,10 +423,10 @@ public class Movement {
             --column;
             row += 2;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
+            isKingChecked(allPieces, row, column);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
-            isKingChecked(allPieces, row, column);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(25);
         }
         else if(currentRow < 6 && currentColumn > 0 && allPieces[currentRow + 2][currentColumn - 1] == null) {
@@ -444,10 +444,10 @@ public class Movement {
             column -= 2;
             ++row;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
+            isKingChecked(allPieces, row, column);
             column = currentColumn;
             row = currentRow;
             allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
-            isKingChecked(allPieces, row, column);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(65);
         }
         else if(currentColumn > 1 && currentRow < 7 && allPieces[currentRow + 1][currentColumn - 2] == null) {
@@ -465,8 +465,8 @@ public class Movement {
             column -= 2;
             --row;
             setPairs(allPieces, tempPair, row, column, currentRow, currentColumn);
-            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
             isKingChecked(allPieces, row, column);
+            allPieces[currentRow][currentColumn].setLine(5, currentColumn * 128 + 64, currentRow * 128 + 64, 2 * 152, Color.RED);
             allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(115);
         }
         else if(currentColumn > 1 && currentRow > 0 && allPieces[currentRow - 1][ currentColumn - 2] == null) {
