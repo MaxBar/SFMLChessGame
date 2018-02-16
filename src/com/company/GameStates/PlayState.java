@@ -103,13 +103,18 @@ public class PlayState extends GameState {
                         case SPACE:
                             if(count == 0) {
                                 ai[0].handleEvents(allpieces, pieceSprite, ai[1]);
-                                ai[1].handleEvents(allpieces, pieceSprite, ai[0]);
                                 ++count;
                             } else if(count >= 1) {
-                                ai[0].clearLines();
-                                ai[1].clearLines();
+                                ai[1].handleEvents(allpieces, pieceSprite, ai[0]);
                                 count = 0;
                             }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                            /* allpieces[0][6].checkMovement(allpieces, 0, 6);
                             allpieces[allpieces[0][6].getY()][allpieces[0][6].getX()] = allpieces[0][6];
                             allpieces[0][0] = null;*/
@@ -136,13 +141,13 @@ public class PlayState extends GameState {
     public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         window.clear(Color.BLACK);
         //lines[0].setSize(new Vector2f(500, 500));
-        line = new DrawLine(5, 19 + 45, 19 + 45, 1000, Color.GREEN);
-        line.rotateLine(-45);
-        lines[0] = new RectangleShape(new Vector2f(5, 5));
-        lines[1] = new RectangleShape(new Vector2f(3, 1000));
-        lines[1].setFillColor(Color.GREEN);
-        lines[0].setPosition(new Vector2f(10, 0));
-        lines[1].setPosition(new Vector2f(20, 100));
+        //line = new DrawLine(5, 19 + 45, 19 + 45, 1000, Color.GREEN);
+        //line.rotateLine(-45);
+        //lines[0] = new RectangleShape(new Vector2f(5, 5));
+        //lines[1] = new RectangleShape(new Vector2f(3, 1000));
+        //lines[1].setFillColor(Color.GREEN);
+        //lines[0].setPosition(new Vector2f(10, 0));
+        //lines[1].setPosition(new Vector2f(20, 100));
         //System.out.println(pieceSprite[1][0].getPosition().y);
      /*   if(pressedButton) {
             if (pieceSprite[1][0].getPosition().y <= newPosY) {
