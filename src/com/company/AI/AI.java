@@ -53,6 +53,7 @@ public class AI {
                 ++count;
                 break;*/
             case 0:
+                clearMoveLine();
                 while(!possibleMovementPair.isEmpty()) {
                     possibleMovementPair.clear();
                 }
@@ -65,16 +66,16 @@ public class AI {
                     possibleMovementPair.add(piece.getPair());
                     line.add(piece.getLines());
                 }
-                checkForCheck(allPieces, ai);
+                //checkForCheck(allPieces, ai);
                 ++count;
                 break;
             case 1:
+                clearLines();
                 move(sprites, allPieces, ai);
-                drawMoveLine(allPieces);
+                //drawMoveLine(allPieces);
                 ++count;
                 break;
             case 2:
-                clearLines();
                 count = 0;
                 break;
                 
@@ -168,7 +169,7 @@ public class AI {
         allPieces[oldPosRow][oldPosColumn] = null;
         
         // Set King to checked if checked
-        List<List<Pair<Integer>>> tempPossibleMovementPair = new ArrayList<>();
+        /*List<List<Pair<Integer>>> tempPossibleMovementPair = new ArrayList<>();
         existingPieces.get(pieceToMove).checkMovement(allPieces, existingPieces.get(pieceToMove).getY(), existingPieces.get(pieceToMove).getX());
         tempPossibleMovementPair.add(existingPieces.get(pieceToMove).getPair());
         for(List<Pair<Integer>> pair : tempPossibleMovementPair) {
@@ -177,10 +178,12 @@ public class AI {
                 if(allPieces[p.getRow()][p.getColumn()] != null) {
                     if (allPieces[p.getRow()][p.getColumn()].type() == PieceTypes.KING) {
                         System.out.println("Setting king to checked");
+                        King king = (King) allPieces[p.getRow()][p.getColumn()];
+                        king.setIsChecked(true);
                     }
                 }
             }
-        }
+        }*/
         
         /*for(int i = 0; i < tempPossibleMovementPair.size(); ++i) {
             for(int j = 0; j < tempPossibleMovementPair.get(i).size(); ++j) {
@@ -222,22 +225,20 @@ public class AI {
         moveLine = null;
     }
     
-    private void drawMoveLine(Piece[][] allPieces) {
+    /*private void drawMoveLine(Piece[][] allPieces) {
         Piece tempPiece = allPieces[existingPieces.get(classPieceToMove).getY()][existingPieces.get(classPieceToMove).getX()];
         
         //allPieces[currentRow][currentColumn].getLines().get(allPieces[currentRow][currentColumn].getLines().size() - 1).rotateLine(155);
         
-        
-        moveLine = tempPiece.getLines().get(allPieces[existingPieces.get(classPieceToMove).getY()][existingPieces.get(classPieceToMove).getX()].getLines().size() - 1);
-    }
+        moveLine = allPieces[existingPieces.get(classPieceToMove).getY()][existingPieces.get(classPieceToMove).getX()].getLines().get(classToMove);
+        //moveLine = tempPiece.getLines().get(allPieces[existingPieces.get(classPieceToMove).getY()][existingPieces.get(classPieceToMove).getX()].getLines().get(classToMove).getLine());
+    }*/
     
-    private void checkForCheck(Piece[][] allPieces, AI ai) {
-        /*Optional<King>*/ King kingPiece;
-        /*Optional<Piece>*/ //Piece tempKingPiece = existingPieces.stream().filter(p -> p.type() == PieceTypes.KING).findFirst().get();
+    /*private void checkForCheck(Piece[][] allPieces, AI ai) {
+        King kingPiece;
         if(existingPieces.stream().filter(p -> p.type() == PieceTypes.KING).findFirst().isPresent()) {
             kingPiece = (King) existingPieces.stream().filter(p -> p.type() == PieceTypes.KING).findFirst().get();
-    
-                if (kingPiece.getIsChecked()) {
+            if (kingPiece.getIsChecked()) {
                     System.out.println("King is checked, checking movements");
                     kingPiece.checkMovement(allPieces, kingPiece.getY(), kingPiece.getX());
                     System.out.println("King movements checked, sending to move King");
@@ -250,12 +251,12 @@ public class AI {
         
         /*if(tempKingPiece.isPresent()) {
             kingPiece = tempKingPiece.get();
-        }*/
+        }
         
         
-    }
+    }*/
     
-    private void ifCheckedMove(King king, AI ai) {
+    /*private void ifCheckedMove(King king, AI ai) {
         boolean canNotMove = false;
         do {
             int whereToMoveRow;
@@ -270,9 +271,7 @@ public class AI {
                         .flatMap(Collection::stream)
                         .filter(p -> p.getColumn() == kingPair.getColumn())) {
                     System.out.println("Moving King to position:\nX: " + kingPair.getColumn() + "\nY: " + kingPair.getRow());
-                    /*if(kingPair != null) {
                     
-                    }*/
                     
                 } else {
                     canNotMove = true;
@@ -283,5 +282,5 @@ public class AI {
         if(canNotMove) {
             System.out.println(this + "loses");
         }
-    }
+    }*/
 }
