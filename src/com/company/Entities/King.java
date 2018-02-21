@@ -1,5 +1,6 @@
 package com.company.Entities;
 
+import com.company.AI.AI;
 import com.company.Enums.PieceTypes;
 import com.company.Managers.TextureManager;
 import com.company.Utility.Movement;

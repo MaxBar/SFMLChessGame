@@ -44,7 +44,7 @@ public abstract class Piece implements IEntity {
         hasMoved = false;
     }
 
-    public List<Pair<Integer>> getPair() {
+    public ArrayList<Pair<Integer>> getPair() {
         return pair;
     }
     

@@ -104,7 +104,7 @@ public class Movement {
         bishopCheckMovement(allPieces, pair, currentRow, currentColumn);
     }
 
-    public void kingCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn, AI ai) {
+    public void kingCheckMovement(Piece[][] allPieces, ArrayList<Pair<Integer>> pair, int currentRow, Integer currentColumn) {
         int column = currentColumn;
         int row = currentRow;
         final int finalRow = row;

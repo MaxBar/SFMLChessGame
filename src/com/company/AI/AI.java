@@ -79,18 +79,24 @@ public class AI {
     }
     
     private void checkForCheck(Piece[][] allPieces, Sprite[][] sprites, AI ai, GameEngine game, RenderWindow window) throws IOException {
-        King kingPiece = (King) existingPieces.stream()
-                .filter(p -> p.type() == PieceTypes.KING)
-                .findFirst()
-                .get();
-        ArrayList<List<Pair<Integer>>> kingsPossibleMovementPair = new ArrayList<>();
-        if(kingPiece.getIsChecked()) {
-            kingPiece.checkMovement(allPieces, kingPiece.getY(), kingPiece.getX());
-            kingsPossibleMovementPair.add(kingPiece.getPair());
-            kingsPossibleMovementPair.forEach(System.out::println);
-            moveKing(allPieces, sprites, kingsPossibleMovementPair, kingPiece, ai, game, window);
-        } else {
-            move(sprites, allPieces, ai);
+        try {
+            King kingPiece = (King) existingPieces.stream()
+                    .filter(p -> p.type() == PieceTypes.KING)
+                    .findFirst()
+                    .get();
+            
+            ArrayList<List<Pair<Integer>>> kingsPossibleMovementPair = new ArrayList<>();
+            if(kingPiece.getIsChecked()) {
+                kingPiece.checkMovement(allPieces, kingPiece.getY(), kingPiece.getX());
+                kingsPossibleMovementPair.add(kingPiece.getPair());
+                kingsPossibleMovementPair.forEach(System.out::println);
+                moveKing(allPieces, sprites, kingsPossibleMovementPair, kingPiece, ai, game, window);
+            } else {
+                move(sprites, allPieces, ai);
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("There is no king!!! Fatal error!");
+            game.changeState(MenuState.getInstance(), window);
         }
     }
     
