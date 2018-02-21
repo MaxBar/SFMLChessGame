@@ -101,29 +101,16 @@ public class PlayState extends GameState {
                 case KEY_RELEASED:
                     switch (event.asKeyEvent().key) {
                         case SPACE:
-                            if(count == 0) {
-                                ai[0].handleEvents(allpieces, pieceSprite, ai[1]);
-                                ai[1].handleEvents(allpieces, pieceSprite, ai[0]);
+                            if(count >= 0 && count < 2) {
+                                ai[0].handleEvents(allpieces, pieceSprite, ai[1], game, window);
                                 ++count;
-                            } else if(count >= 1) {
-                                ai[0].clearLines();
-                                ai[1].clearLines();
-                                count = 0;
+                            } else if(count >= 2) {
+                                ai[1].handleEvents(allpieces, pieceSprite, ai[0], game, window);
+                                ++count;
+                                if(count >= 4) {
+                                    count = 0;
+                                }
                             }
-                           /* allpieces[0][6].checkMovement(allpieces, 0, 6);
-                            allpieces[allpieces[0][6].getY()][allpieces[0][6].getX()] = allpieces[0][6];
-                            allpieces[0][0] = null;*/
-                            //System.out.println(allpieces[0][1]);
-                            //pressedButton = true;
-                            
-                            
-                            
-                            //newPosY = allpieces[1][0].getY() * 128 + 19;
-                            
-                            
-                            
-                            //newPosY += 128;
-                            //System.out.println(newPosY);
                             break;
                     }
                 case MOUSE_ENTERED:
@@ -135,26 +122,6 @@ public class PlayState extends GameState {
     @Override
     public void update(GameEngine game, RenderWindow window, float deltaTime) throws IOException {
         window.clear(Color.BLACK);
-        //lines[0].setSize(new Vector2f(500, 500));
-        line = new DrawLine(5, 19 + 45, 19 + 45, 1000, Color.GREEN);
-        line.rotateLine(-45);
-        lines[0] = new RectangleShape(new Vector2f(5, 5));
-        lines[1] = new RectangleShape(new Vector2f(3, 1000));
-        lines[1].setFillColor(Color.GREEN);
-        lines[0].setPosition(new Vector2f(10, 0));
-        lines[1].setPosition(new Vector2f(20, 100));
-        //System.out.println(pieceSprite[1][0].getPosition().y);
-     /*   if(pressedButton) {
-            if (pieceSprite[1][0].getPosition().y <= newPosY) {
-                pieceSprite[1][0].move(0, movementSpeed * deltaTime);
-                if(pieceSprite[1][0].getPosition().y >= newPosY) {
-                    pieceSprite[1][0].setPosition(pieceSprite[2][0].getPosition().x, newPosY);
-                }
-            } else if (pieceSprite[1][0].getPosition().y >= (19 + 128 * 8)) {
-                pieceSprite[1][0].setPosition(pieceSprite[1][0].getPosition().x, 1024);
-                pressedButton = false;
-            }
-        }*/
     }
     
     @Override
@@ -174,10 +141,6 @@ public class PlayState extends GameState {
         }
         ai[0].draw(window);
         ai[1].draw(window);
-        //ai[1].draw(window);
-        /*for(int i = 0; i < lines.length; ++i) {
-            window.draw(lines[i]);
-        }*/
         
         window.display();
     }

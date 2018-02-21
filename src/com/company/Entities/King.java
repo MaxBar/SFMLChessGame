@@ -10,18 +10,18 @@ import java.util.ArrayList;
 
 public class King extends Piece implements IEntity {
 
-    Sprite sprite;
+    private Sprite sprite;
     private Movement movement;
+    private boolean isChecked;
 
 
     public King(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        super.startPosX = 60;
-        super.setStartPosX(startPosX);
+        super.setStartPosX(60);
         super.setPointValue(100);
         sprite = new Sprite();
-        //pair = new ArrayList<>();
         movement = new Movement();
+        isChecked = false;
     }
 
     @Override
@@ -32,16 +32,20 @@ public class King extends Piece implements IEntity {
     @Override
     public Sprite getSprite(TextureManager textureManager, String filePath) {
         sprite.setTexture(textureManager.getTexture(filePath));
-        //return textureManager.getSprite(getIntRect(), filePath);
         sprite.setTextureRect(getIntRect());
         return sprite;
     }
 
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
+        super.pair.clear();
         movement.kingCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
-
-    @Override
-    public void move() {
+    
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
+    
+    public boolean getIsChecked() {
+        return isChecked;
     }
 }
