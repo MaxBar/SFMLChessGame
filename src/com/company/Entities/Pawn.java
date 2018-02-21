@@ -16,27 +16,17 @@ import java.util.List;
 public class Pawn extends Piece implements IEntity {
 
     private Sprite sprite;
-    
-    // Movement
-    private boolean hasMoved;
-    private int hasMovedMove;
-    private int hasNotMovedMove;
-    private ArrayList<ArrayList<Integer>> canMoveHere;
-    Movement movement;
+    private Movement movement;
 
     
     public Pawn(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        super.startPosX = 300;
-        super.setStartPosX(startPosX);
+        super.setStartPosX(300);
         super.setPointValue(1);
         sprite = new Sprite();
         
         // Movement
         super.setHasMoved(false);
-        hasMovedMove = 1;
-        hasNotMovedMove = 2;
-        canMoveHere = new ArrayList<>();
         movement = new Movement();
     }
 
@@ -55,7 +45,4 @@ public class Pawn extends Piece implements IEntity {
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
         movement.pawnCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
-
-    @Override
-    public void move() { }
 }

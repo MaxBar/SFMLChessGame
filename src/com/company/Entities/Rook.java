@@ -10,15 +10,14 @@ import java.util.ArrayList;
 
 public class Rook extends Piece implements IEntity {
 
-    Sprite sprite;
+    private Sprite sprite;
     private boolean hasMoved;
     private Movement movement;
     
     
     public Rook(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        super.startPosX = 120;
-        super.setStartPosX(startPosX);
+        super.setStartPosX(120);
         super.setPointValue(5);
         sprite = new Sprite();
         movement = new Movement();
@@ -39,7 +38,4 @@ public class Rook extends Piece implements IEntity {
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
         movement.rookCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
-    
-    @Override
-    public void move() { }
 }

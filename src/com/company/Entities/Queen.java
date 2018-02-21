@@ -10,14 +10,13 @@ import java.util.ArrayList;
 
 public class Queen extends Piece implements IEntity{
 
-    Sprite sprite;
+    private Sprite sprite;
     private Movement movement;
 
 
     public Queen(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        super.startPosX = 0;
-        super.setStartPosX(startPosX);
+        super.setStartPosX(0);
         super.setPointValue(9);
         sprite = new Sprite();
         movement = new Movement();
@@ -39,7 +38,4 @@ public class Queen extends Piece implements IEntity{
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
         movement.queenCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
-    
-    @Override
-    public void move() { }
 }

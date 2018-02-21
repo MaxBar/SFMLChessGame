@@ -10,14 +10,13 @@ import java.util.ArrayList;
 
 public class Bishop extends Piece implements IEntity {
 
-    Sprite sprite;
+    private Sprite sprite;
     private Movement movement;
 
 
     public Bishop(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        super.startPosX = 240;
-        super.setStartPosX(startPosX);
+        super.setStartPosX(240);
         super.setPointValue(3);
         sprite = new Sprite();
         movement = new Movement();
@@ -35,10 +34,8 @@ public class Bishop extends Piece implements IEntity {
         return sprite;
     }
 
+    @Override
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
         movement.bishopCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
-
-    @Override
-    public void move() { }
 }

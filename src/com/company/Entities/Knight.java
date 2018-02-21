@@ -11,17 +11,15 @@ import java.util.Collections;
 
 public class Knight extends Piece implements IEntity {
 
-    Sprite sprite;
+    private Sprite sprite;
     private Movement movement;
 
 
     public Knight(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        super.startPosX = 180;
-        super.setStartPosX(startPosX);
+        super.setStartPosX(180);
         super.setPointValue(3);
         sprite = new Sprite();
-       // pair = new ArrayList<>();
         movement = new Movement();
     }
     
@@ -33,7 +31,6 @@ public class Knight extends Piece implements IEntity {
     @Override
     public Sprite getSprite(TextureManager textureManager, String filePath) {
         sprite.setTexture(textureManager.getTexture(filePath));
-        //return textureManager.getSprite(getIntRect(), filePath);
         sprite.setTextureRect(getIntRect());
         return sprite;
     }
@@ -41,7 +38,4 @@ public class Knight extends Piece implements IEntity {
     public void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn) {
         movement.knightCheckMovement(allPieces, super.pair, currentRow, currentColumn);
     }
-    
-    @Override
-    public void move() { }
 }
