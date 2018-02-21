@@ -1,6 +1,11 @@
 package com.company.Entities;
 
-public interface IEntity {
+import com.company.Enums.PieceTypes;
+import com.company.Managers.TextureManager;
+import org.jsfml.graphics.Sprite;
 
-    void move();
+public interface IEntity {
+    PieceTypes type();
+    Sprite getSprite(TextureManager textureManager, String filePath);
+    void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn);
 }

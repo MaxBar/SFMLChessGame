@@ -11,46 +11,24 @@ import org.jsfml.graphics.Sprite;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Piece {
+public abstract class Piece implements IEntity {
 
     private int x;
     private int y;
-    int startPosX;
+    private int startPosX;
     private int startPosY;
     private int endPosX;
     private int endPosY;
+    private int pointValue;
+    
     private boolean isWhite;
     private boolean hasMoved;
-    private int pointValue;
-    ArrayList<Pair<Integer>> pair;
     
+    protected ArrayList<Pair<Integer>> pair;
     
     private List<DrawLine> line = new ArrayList<>();
     
-    public List<DrawLine> getLines() {
-        return line;
-    }
     
-    public void setLine(float thickness, float startingPosX, float startingPosY, float endPosY, Color color) {
-        line.add(new DrawLine(thickness, startingPosX, startingPosY, endPosY, color));
-    }
-    
-    public void clearLines() {
-        line.clear();
-    }
-    
-    public boolean getHasMoved() {
-        return hasMoved;
-    }
-    
-    public void setHasMoved(boolean hasMoved){ this.hasMoved = hasMoved; }
-
-    public IntRect getIntRect() {
-        if (isWhite) {
-            startPosY = 60;
-        }
-        return new IntRect(startPosX, startPosY, endPosX, endPosY);
-    }
 
     public Piece() { }
 
@@ -59,7 +37,6 @@ public abstract class Piece {
         this.isWhite = isWhite;
         this.x = x;
         this.y = y;
-        //startPosX;
         startPosY = 0;
         endPosX = 60;
         endPosY = 60;
@@ -98,14 +75,39 @@ public abstract class Piece {
     public int getY() {
         return y;
     }
-
-    public void setPointValue(int pointValue) { this.pointValue = pointValue; }
-
-    public int getPointValue() { return pointValue; }
-
-    public abstract PieceTypes type();
     
-    public abstract Sprite getSprite(TextureManager textureManager, String filePath);
+    public List<DrawLine> getLines() {
+        return line;
+    }
     
-    public abstract void checkMovement(Piece[][] allPieces, Integer currentRow, Integer currentColumn);
+    public void setLine(float thickness, float startingPosX, float startingPosY, float endPosY, Color color) {
+        line.add(new DrawLine(thickness, startingPosX, startingPosY, endPosY, color));
+    }
+    
+    public void clearLines() {
+        line.clear();
+    }
+    
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+    
+    public void setHasMoved(boolean hasMoved) {
+        this.hasMoved = hasMoved;
+    }
+    
+    public IntRect getIntRect() {
+        if (isWhite) {
+            startPosY = 60;
+        }
+        return new IntRect(startPosX, startPosY, endPosX, endPosY);
+    }
+
+    public void setPointValue(int pointValue) {
+        this.pointValue = pointValue;
+    }
+
+    public int getPointValue() {
+        return pointValue;
+    }
 }
